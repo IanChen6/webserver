@@ -12,7 +12,7 @@ from selenium.webdriver import DesiredCapabilities
 from guoshui import guoshui
 from django.views.decorators.csrf import csrf_exempt
 from get_db import get_db, add_task, job_finish
-
+from log_ging.log_01 import *
 
 # 表单
 def search_form(request):
@@ -34,9 +34,12 @@ def search(request):
 def search_post(request):
     # ctx = {}
     # ctx['rlt'] = "信息未输入"
+    logger = create_logger()
+    logger.info("开始接受请求")
     if request.POST:
         # ctx['rlt'] = request.POST['BatchID']
         post_data = dict(request.POST)
+        logger.info("接受请求成功")
         # ctx['rlt'] = "请输入正确信息"
         if post_data['BatchID'] and post_data['BatchYear'] and post_data['BatchMonth'] and post_data['CompanyID'] and  post_data['CustomerID'] and post_data['TaxId'] and post_data['TaxPwd'] and post_data['jobname'] and post_data['jobparams']:
             account = post_data['TaxId'][0]
@@ -51,7 +54,9 @@ def search_post(request):
             #获取数据库
             host, port, db = get_db(companyid)
             #添加任务
+            logger.info("添加任务到数据库")
             add_task(host, port, db, batchid, batchyear, batchmonth, companyid, customerid, jobname, jobparams)
+            logger.info("任务添加成功,开始爬取")
             gs = guoshui(user=account, pwd=pwd, batchid=batchid, batchyear=batchyear, batchmonth=batchmonth,
                          companyid=companyid, customerid=customerid)
             # gs = guoshui(user=account, pwd=pwd,batchid=123,batchmonth=456,batchyear=789,companyid=12,customerid=13)
@@ -105,4 +110,5 @@ def search_post(request):
             print("爬取完成")
             browser.quit()
             return HttpResponse("爬取完成")
+
     return HttpResponse("爬取失败")
