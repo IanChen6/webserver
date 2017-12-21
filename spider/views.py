@@ -107,11 +107,15 @@ def search_post(request):
                 # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
                 # browser.get(url=ds_url)
                 # gs.dishui(browser)
-            except Exception as e:
-                job_finish(host, port, db, batchid, companyid, customerid, '-1', 'e')
-            job_finish(host, port, db, batchid,companyid,customerid, '1', '成功爬取')
-            print("爬取完成")
-            browser.quit()
-            return HttpResponse("爬取完成")
+                job_finish(host, port, db, batchid,companyid,customerid, '1', '成功爬取')
+                print("爬取完成")
+                logger.info("全部爬取完成")
+                browser.quit()
+                return HttpResponse("爬取完成")
 
-    return HttpResponse("爬取失败")
+            except Exception as e:
+                browser.quit()
+                job_finish(host, port, db, batchid, companyid, customerid, '-1', 'e')
+                return HttpResponse("爬取失败")
+
+    return HttpResponse("信息输入错误")

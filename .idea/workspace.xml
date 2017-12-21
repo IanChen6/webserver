@@ -3,41 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="abaa276c-cb08-4876-8b2b-d1199ae8c31e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/captcha.jpg" afterPath="$PROJECT_DIR$/captcha.jpg" />
-      <change beforePath="$PROJECT_DIR$/cookies.json" afterPath="$PROJECT_DIR$/cookies.json" />
-      <change beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
-      <change beforePath="$PROJECT_DIR$/guoshui.py" afterPath="$PROJECT_DIR$/guoshui.py" />
       <change beforePath="$PROJECT_DIR$/log.log" afterPath="$PROJECT_DIR$/log.log" />
-      <change beforePath="$PROJECT_DIR$/国税增值税02月申报结果截图.png" afterPath="$PROJECT_DIR$/国税增值税02月申报结果截图.png" />
-      <change beforePath="$PROJECT_DIR$/国税增值税07申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税增值税12月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税所得税07申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0101月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0102月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0105月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0107月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0110月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0201月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0202月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0207月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0210月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0301月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图0305月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图1102月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税申报表截图1202月.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表01月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表02月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表03月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表04月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表05月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表06月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表07月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表07申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表08月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表09月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表10月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表11月申报结果截图.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/国税财务报表12月申报结果截图.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/spider/views.py" afterPath="$PROJECT_DIR$/spider/views.py" />
+      <change beforePath="$PROJECT_DIR$/国税增值税04月申报结果截图.png" afterPath="$PROJECT_DIR$/国税增值税04月申报结果截图.png" />
+      <change beforePath="$PROJECT_DIR$/国税增值税06月申报结果截图.png" afterPath="$PROJECT_DIR$/国税增值税06月申报结果截图.png" />
+      <change beforePath="$PROJECT_DIR$/国税增值税08月申报结果截图.png" afterPath="$PROJECT_DIR$/国税增值税08月申报结果截图.png" />
+      <change beforePath="$PROJECT_DIR$/国税增值税10月申报结果截图.png" afterPath="$PROJECT_DIR$/国税增值税10月申报结果截图.png" />
+      <change beforePath="$PROJECT_DIR$/国税申报表截图1105月.png" afterPath="$PROJECT_DIR$/国税申报表截图1105月.png" />
+      <change beforePath="$PROJECT_DIR$/国税申报表截图1305月.png" afterPath="$PROJECT_DIR$/国税申报表截图1305月.png" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,8 +45,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spider/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="79" column="56" lean-forward="true" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+            <state relative-caret-position="489">
+              <caret line="113" column="43" lean-forward="true" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -84,8 +57,8 @@
       <file leaf-file-name="guoshui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/guoshui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="535" column="15" lean-forward="false" selection-start-line="477" selection-start-column="2" selection-end-line="535" selection-end-column="15" />
+            <state relative-caret-position="321">
+              <caret line="492" column="45" lean-forward="true" selection-start-line="492" selection-start-column="45" selection-end-line="492" selection-end-column="45" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -163,7 +136,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="170" />
     <option name="y" value="51" />
     <option name="width" value="1735" />
@@ -396,7 +369,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="170" y="51" width="1735" height="955" extended-state="0" />
+    <frame x="170" y="51" width="1735" height="955" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296837" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
@@ -730,16 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/guoshui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="535" column="15" lean-forward="false" selection-start-line="477" selection-start-column="2" selection-end-line="535" selection-end-column="15" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webserver/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
@@ -748,10 +711,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/guoshui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="492" column="45" lean-forward="true" selection-start-line="492" selection-start-column="45" selection-end-line="492" selection-end-column="45" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spider/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="79" column="56" lean-forward="true" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+        <state relative-caret-position="489">
+          <caret line="113" column="43" lean-forward="true" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
