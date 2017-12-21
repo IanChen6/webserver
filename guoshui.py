@@ -215,6 +215,8 @@ class guoshui(object):
                 zzrq = '{}{}{}'.format(year, month, days)
                 logger.info("查询{}月".format(m))
                 browser.get(url='http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html')
+                wait = ui.WebDriverWait(browser, 10)
+                wait.until(lambda browser: browser.find_element_by_css_selector("#sbrqq .mini-buttonedit-input"))
                 browser.find_element_by_css_selector("#sz .mini-buttonedit-input").clear()
                 browser.find_element_by_css_selector("#sz .mini-buttonedit-input").send_keys("{}".format(shuiming))
                 browser.find_element_by_css_selector("#sbrqq .mini-buttonedit-input").clear()
@@ -331,6 +333,7 @@ class guoshui(object):
             return img_list2
         except Exception as e:
             logger.info(e)
+            return []
 
 
     # 国税缴款
@@ -495,7 +498,7 @@ class guoshui(object):
 
 
 # start=time.time()
-# gs = guoshui(user="440300754285743", pwd="77766683",batchid=2017,batchmonth=7,batchyear=2017,companyid=18282900,customerid=13)
+# gs = guoshui(user="440300754285743", pwd="77766683",batchid=2017,batchmonth=0,batchyear=2017,companyid=18282900,customerid=13)
 # cookies, session = gs.login()
 # jsoncookies = json.dumps(cookies)
 # with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
