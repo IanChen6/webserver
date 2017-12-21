@@ -1564,3 +1564,225 @@ Thu 21 Dec 2017 15:58:30 INFO guoshui.py 216 20600 查询12月
 Thu 21 Dec 2017 15:58:34 INFO guoshui.py 295 20600 截取国税申报信息已完成
 Thu 21 Dec 2017 16:00:15 INFO guoshui.py 144 10760 开始登录
 Thu 21 Dec 2017 16:00:15 INFO guoshui.py 174 10760 登录成功
+Thu 21 Dec 2017 16:32:10 INFO views.py 38 19280 开始接受请求
+Thu 21 Dec 2017 16:32:10 INFO views.py 38 19280 开始接受请求
+Thu 21 Dec 2017 16:32:10 INFO views.py 42 19280 接受请求成功
+Thu 21 Dec 2017 16:32:10 INFO views.py 42 19280 接受请求成功
+Thu 21 Dec 2017 16:41:25 INFO views.py 38 21364 开始接受请求
+Thu 21 Dec 2017 16:41:25 INFO views.py 38 21364 开始接受请求
+Thu 21 Dec 2017 16:41:25 INFO views.py 42 21364 接受请求成功
+Thu 21 Dec 2017 16:41:25 INFO views.py 42 21364 接受请求成功
+Thu 21 Dec 2017 16:41:26 INFO views.py 57 21364 添加任务到数据库
+Thu 21 Dec 2017 16:41:26 INFO views.py 57 21364 添加任务到数据库
+Thu 21 Dec 2017 16:41:26 INFO views.py 59 21364 任务添加成功,开始爬取
+Thu 21 Dec 2017 16:41:26 INFO views.py 59 21364 任务添加成功,开始爬取
+Thu 21 Dec 2017 16:41:26 INFO guoshui.py 144 21364 开始登录
+Thu 21 Dec 2017 16:41:26 INFO guoshui.py 144 21364 开始登录
+Thu 21 Dec 2017 16:41:27 INFO guoshui.py 174 21364 登录成功
+Thu 21 Dec 2017 16:41:27 INFO guoshui.py 174 21364 登录成功
+Thu 21 Dec 2017 16:41:44 INFO guoshui.py 199 21364 截取国税增值税申报信息
+Thu 21 Dec 2017 16:41:44 INFO guoshui.py 199 21364 截取国税增值税申报信息
+Thu 21 Dec 2017 16:41:44 INFO guoshui.py 216 21364 查询01月
+Thu 21 Dec 2017 16:41:44 INFO guoshui.py 216 21364 查询01月
+Thu 21 Dec 2017 16:41:49 INFO guoshui.py 239 21364 有申报表需要查询
+Thu 21 Dec 2017 16:41:49 INFO guoshui.py 239 21364 有申报表需要查询
+Thu 21 Dec 2017 16:41:49 INFO guoshui.py 302 21364 申报表截图
+Thu 21 Dec 2017 16:41:49 INFO guoshui.py 302 21364 申报表截图
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 324 21364 申报表截图完成
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 324 21364 申报表截图完成
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 326 21364 返回主页面
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 326 21364 返回主页面
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 329 21364 关闭当前申报表
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 329 21364 关闭当前申报表
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 243 21364 查询01月完成
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 243 21364 查询01月完成
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 216 21364 查询02月
+Thu 21 Dec 2017 16:41:54 INFO guoshui.py 216 21364 查询02月
+Thu 21 Dec 2017 16:48:32 INFO views.py 38 24228 开始接受请求
+Thu 21 Dec 2017 16:48:32 INFO views.py 38 24228 开始接受请求
+Thu 21 Dec 2017 16:48:32 INFO views.py 42 24228 接受请求成功
+Thu 21 Dec 2017 16:48:32 INFO views.py 42 24228 接受请求成功
+Thu 21 Dec 2017 16:48:33 INFO views.py 57 24228 添加任务到数据库
+Thu 21 Dec 2017 16:48:33 INFO views.py 57 24228 添加任务到数据库
+Thu 21 Dec 2017 16:48:33 INFO views.py 59 24228 任务添加成功,开始爬取
+Thu 21 Dec 2017 16:48:33 INFO views.py 59 24228 任务添加成功,开始爬取
+Thu 21 Dec 2017 16:48:33 INFO guoshui.py 144 24228 开始登录
+Thu 21 Dec 2017 16:48:33 INFO guoshui.py 144 24228 开始登录
+Thu 21 Dec 2017 16:48:33 INFO guoshui.py 174 24228 登录成功
+Thu 21 Dec 2017 16:48:33 INFO guoshui.py 174 24228 登录成功
+Thu 21 Dec 2017 16:48:48 INFO guoshui.py 199 24228 截取国税增值税申报信息
+Thu 21 Dec 2017 16:48:48 INFO guoshui.py 199 24228 截取国税增值税申报信息
+Thu 21 Dec 2017 16:48:48 INFO guoshui.py 216 24228 查询01月
+Thu 21 Dec 2017 16:48:48 INFO guoshui.py 216 24228 查询01月
+Thu 21 Dec 2017 16:48:54 INFO guoshui.py 216 24228 查询02月
+Thu 21 Dec 2017 16:48:54 INFO guoshui.py 216 24228 查询02月
+Thu 21 Dec 2017 16:49:03 INFO guoshui.py 243 24228 查询02月完成
+Thu 21 Dec 2017 16:49:03 INFO guoshui.py 243 24228 查询02月完成
+Thu 21 Dec 2017 16:49:04 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:49:04 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:49:04 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:49:04 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 243 24228 查询02月完成
+Thu 21 Dec 2017 16:49:09 INFO guoshui.py 243 24228 查询02月完成
+Thu 21 Dec 2017 16:49:10 INFO guoshui.py 216 24228 查询03月
+Thu 21 Dec 2017 16:49:10 INFO guoshui.py 216 24228 查询03月
+Thu 21 Dec 2017 16:49:15 INFO guoshui.py 216 24228 查询04月
+Thu 21 Dec 2017 16:49:15 INFO guoshui.py 216 24228 查询04月
+Thu 21 Dec 2017 16:49:26 INFO guoshui.py 243 24228 查询04月完成
+Thu 21 Dec 2017 16:49:26 INFO guoshui.py 243 24228 查询04月完成
+Thu 21 Dec 2017 16:49:29 INFO guoshui.py 216 24228 查询05月
+Thu 21 Dec 2017 16:49:29 INFO guoshui.py 216 24228 查询05月
+Thu 21 Dec 2017 16:49:38 INFO guoshui.py 243 24228 查询05月完成
+Thu 21 Dec 2017 16:49:38 INFO guoshui.py 243 24228 查询05月完成
+Thu 21 Dec 2017 16:49:38 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:49:38 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:49:38 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:49:38 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:49:52 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$2'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$2\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:49:52 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$2'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$2\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$4'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$4\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$4'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$4\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 243 24228 查询05月完成
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 243 24228 查询05月完成
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 216 24228 查询06月
+Thu 21 Dec 2017 16:50:05 INFO guoshui.py 216 24228 查询06月
+Thu 21 Dec 2017 16:50:10 INFO guoshui.py 243 24228 查询06月完成
+Thu 21 Dec 2017 16:50:10 INFO guoshui.py 243 24228 查询06月完成
+Thu 21 Dec 2017 16:50:10 INFO guoshui.py 216 24228 查询07月
+Thu 21 Dec 2017 16:50:10 INFO guoshui.py 216 24228 查询07月
+Thu 21 Dec 2017 16:50:15 INFO guoshui.py 243 24228 查询07月完成
+Thu 21 Dec 2017 16:50:15 INFO guoshui.py 243 24228 查询07月完成
+Thu 21 Dec 2017 16:50:15 INFO guoshui.py 216 24228 查询08月
+Thu 21 Dec 2017 16:50:15 INFO guoshui.py 216 24228 查询08月
+Thu 21 Dec 2017 16:50:23 INFO guoshui.py 243 24228 查询08月完成
+Thu 21 Dec 2017 16:50:23 INFO guoshui.py 243 24228 查询08月完成
+Thu 21 Dec 2017 16:50:24 INFO guoshui.py 216 24228 查询09月
+Thu 21 Dec 2017 16:50:24 INFO guoshui.py 216 24228 查询09月
+Thu 21 Dec 2017 16:50:31 INFO guoshui.py 243 24228 查询09月完成
+Thu 21 Dec 2017 16:50:31 INFO guoshui.py 243 24228 查询09月完成
+Thu 21 Dec 2017 16:50:32 INFO guoshui.py 216 24228 查询10月
+Thu 21 Dec 2017 16:50:32 INFO guoshui.py 216 24228 查询10月
+Thu 21 Dec 2017 16:50:37 INFO guoshui.py 243 24228 查询10月完成
+Thu 21 Dec 2017 16:50:37 INFO guoshui.py 243 24228 查询10月完成
+Thu 21 Dec 2017 16:50:37 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:50:37 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:50:37 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:50:37 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 243 24228 查询10月完成
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 243 24228 查询10月完成
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 216 24228 查询11月
+Thu 21 Dec 2017 16:50:42 INFO guoshui.py 216 24228 查询11月
+Thu 21 Dec 2017 16:50:50 INFO guoshui.py 243 24228 查询11月完成
+Thu 21 Dec 2017 16:50:50 INFO guoshui.py 243 24228 查询11月完成
+Thu 21 Dec 2017 16:50:50 INFO guoshui.py 216 24228 查询12月
+Thu 21 Dec 2017 16:50:50 INFO guoshui.py 216 24228 查询12月
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 243 24228 查询12月完成
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 243 24228 查询12月完成
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 295 24228 截取国税申报信息已完成
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 295 24228 截取国税申报信息已完成
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 199 24228 截取国税财务报表申报信息
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 199 24228 截取国税财务报表申报信息
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 216 24228 查询01月
+Thu 21 Dec 2017 16:50:55 INFO guoshui.py 216 24228 查询01月
+Thu 21 Dec 2017 16:51:00 INFO guoshui.py 216 24228 查询02月
+Thu 21 Dec 2017 16:51:00 INFO guoshui.py 216 24228 查询02月
+Thu 21 Dec 2017 16:51:05 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:51:05 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:51:05 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:51:05 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 243 24228 查询02月完成
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 243 24228 查询02月完成
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 216 24228 查询03月
+Thu 21 Dec 2017 16:51:09 INFO guoshui.py 216 24228 查询03月
+Thu 21 Dec 2017 16:51:14 INFO guoshui.py 216 24228 查询04月
+Thu 21 Dec 2017 16:51:14 INFO guoshui.py 216 24228 查询04月
+Thu 21 Dec 2017 16:51:20 INFO guoshui.py 216 24228 查询05月
+Thu 21 Dec 2017 16:51:20 INFO guoshui.py 216 24228 查询05月
+Thu 21 Dec 2017 16:51:25 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:51:25 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:51:25 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:51:25 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:51:39 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$2'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$2\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:51:39 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$2'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$2\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$4'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$4\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 322 24228 Message: {"errorMessage":"Unable to find element with id 'mini-1$4'","request":{"headers":{"Accept":"application/json","Accept-Encoding":"identity","Connection":"close","Content-Length":"89","Content-Type":"application/json;charset=UTF-8","Host":"127.0.0.1:16818","User-Agent":"Python http auth"},"httpVersion":"1.1","method":"POST","post":"{\"using\": \"id\", \"sessionId\": \"bb938940-e62b-11e7-90ed-9d09d8bd8557\", \"value\": \"mini-1$4\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/bb938940-e62b-11e7-90ed-9d09d8bd8557/element"}}
+Screenshot: available via screen
+
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 243 24228 查询05月完成
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 243 24228 查询05月完成
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 216 24228 查询06月
+Thu 21 Dec 2017 16:51:50 INFO guoshui.py 216 24228 查询06月
+Thu 21 Dec 2017 16:51:55 INFO guoshui.py 216 24228 查询07月
+Thu 21 Dec 2017 16:51:55 INFO guoshui.py 216 24228 查询07月
+Thu 21 Dec 2017 16:52:00 INFO guoshui.py 216 24228 查询08月
+Thu 21 Dec 2017 16:52:00 INFO guoshui.py 216 24228 查询08月
+Thu 21 Dec 2017 16:52:06 INFO guoshui.py 216 24228 查询09月
+Thu 21 Dec 2017 16:52:06 INFO guoshui.py 216 24228 查询09月
+Thu 21 Dec 2017 16:52:10 INFO guoshui.py 216 24228 查询10月
+Thu 21 Dec 2017 16:52:10 INFO guoshui.py 216 24228 查询10月
+Thu 21 Dec 2017 16:52:16 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:52:16 INFO guoshui.py 239 24228 有申报表需要查询
+Thu 21 Dec 2017 16:52:16 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:52:16 INFO guoshui.py 302 24228 申报表截图
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 324 24228 申报表截图完成
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 326 24228 返回主页面
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 329 24228 关闭当前申报表
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 243 24228 查询10月完成
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 243 24228 查询10月完成
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 216 24228 查询11月
+Thu 21 Dec 2017 16:52:19 INFO guoshui.py 216 24228 查询11月
+Thu 21 Dec 2017 16:52:25 INFO guoshui.py 216 24228 查询12月
+Thu 21 Dec 2017 16:52:25 INFO guoshui.py 216 24228 查询12月
+Thu 21 Dec 2017 16:52:32 INFO guoshui.py 295 24228 截取国税申报信息已完成
+Thu 21 Dec 2017 16:52:32 INFO guoshui.py 295 24228 截取国税申报信息已完成
+Thu 21 Dec 2017 16:52:32 INFO guoshui.py 199 24228 截取国税所得税申报信息
+Thu 21 Dec 2017 16:52:32 INFO guoshui.py 199 24228 截取国税所得税申报信息
+Thu 21 Dec 2017 16:52:32 INFO guoshui.py 216 24228 查询01月
+Thu 21 Dec 2017 16:52:32 INFO guoshui.py 216 24228 查询01月

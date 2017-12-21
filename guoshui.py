@@ -60,7 +60,7 @@ class guoshui(object):
             else:
                 data= {'fileType': '.pdf'}
             files = {"imgfile": a.read()}
-            r = requests.post(upload_url, data=data, files=files)
+            r = requests.post(upload_url, data=data, files=files,timeout=10)
             imgname = re.search(r'filePath":"(.*?)"', r.text)
             imgname = imgname.group(1)
             return imgname
@@ -160,7 +160,7 @@ class guoshui(object):
                        'Origin': 'http://dzswj.szgs.gov.cn'
                        }
             with open("captcha.jpg", "wb") as f:
-                f.write(session.get(url=captcha_url, headers=headers).content)
+                f.write(session.get(url=captcha_url, headers=headers,timeout=10).content)
                 f.close()
             tagger = self.captcha()
             time_l = time.localtime(int(time.time()))
@@ -428,7 +428,7 @@ class guoshui(object):
                        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
                        }
             with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                w.write(requests.post(url=post_url, headers=headers, data=post_data, cookies=ck).content)
+                w.write(requests.post(url=post_url, headers=headers, data=post_data,timeout=10, cookies=ck).content)
                 pdf=self.upload_img("申报表详情{}.pdf".format(pzxh))
             params = (
                 self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh), str(jsxx[1]),str(jsxx[2]),
