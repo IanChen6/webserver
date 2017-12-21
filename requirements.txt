@@ -1,0 +1,9 @@
+selenium
+requests
+scrapy
+pyquery
+pymssql
+PyPDF2
+PythonMagick
+
+
