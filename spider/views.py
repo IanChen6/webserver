@@ -57,55 +57,58 @@ def search_post(request):
             logger.info("添加任务到数据库")
             add_task(host, port, db, batchid, batchyear, batchmonth, companyid, customerid, jobname, jobparams)
             logger.info("任务添加成功,开始爬取")
-            gs = guoshui(user=account, pwd=pwd, batchid=batchid, batchyear=batchyear, batchmonth=batchmonth,
+            try:
+                gs = guoshui(user=account, pwd=pwd, batchid=batchid, batchyear=batchyear, batchmonth=batchmonth,
                          companyid=companyid, customerid=customerid)
             # gs = guoshui(user=account, pwd=pwd,batchid=123,batchmonth=456,batchyear=789,companyid=12,customerid=13)
-            cookies, session = gs.login()
-            jsoncookies = json.dumps(cookies)
-            with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
-                f.write(jsoncookies)
-                f.close()
-            dcap = dict(DesiredCapabilities.PHANTOMJS)
-            dcap["phantomjs.page.settings.userAgent"] = (
+                cookies, session = gs.login()
+                jsoncookies = json.dumps(cookies)
+                with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
+                    f.write(jsoncookies)
+                    f.close()
+                dcap = dict(DesiredCapabilities.PHANTOMJS)
+                dcap["phantomjs.page.settings.userAgent"] = (
                 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
-            dcap["phantomjs.page.settings.loadImages"] = True
-            browser = webdriver.PhantomJS(
-                executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
+                dcap["phantomjs.page.settings.loadImages"] = True
+                # browser = webdriver.PhantomJS(
+                # executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
+                # desired_capabilities=dcap)
+                browser = webdriver.PhantomJS(
+                executable_path='/home/tool/phantomjs-2.1.1-linux-x86_64/bin/phantomjs',
                 desired_capabilities=dcap)
-            # browser = webdriver.PhantomJS(
-            #     executable_path='/home/tool/phantomjs-2.1.1-linux-x86_64/bin/phantomjs',
-            #     desired_capabilities=dcap)
-            browser.implicitly_wait(10)
-            browser.viewportSize = {'width': 2200, 'height': 2200}
-            browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
-            index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
-            browser.get(url=index_url)
-            browser.delete_all_cookies()
-            with open('cookies.json', 'r', encoding='utf8') as f:
-                cookielist = json.loads(f.read())
-            for (k, v) in cookielist.items():
-                browser.add_cookie({
+                browser.implicitly_wait(10)
+                browser.viewportSize = {'width': 2200, 'height': 2200}
+                browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
+                index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
+                browser.get(url=index_url)
+                browser.delete_all_cookies()
+                with open('cookies.json', 'r', encoding='utf8') as f:
+                    cookielist = json.loads(f.read())
+                for (k, v) in cookielist.items():
+                    browser.add_cookie({
                     'domain': '.szgs.gov.cn',  # 此处xxx.com前，需要带点
                     'name': k,
                     'value': v,
                     'path': '/',
                     'expires': None})
-            shenbao_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html'
-            browser.get(url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html")
-            browser.get(url=shenbao_url)
-            time.sleep(3)
-            gs.shuizhongchaxun(browser)
-            # gs.parse_biaoge(browser)
+                shenbao_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html'
+                browser.get(url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html")
+                browser.get(url=shenbao_url)
+                time.sleep(3)
+                gs.shuizhongchaxun(browser)
+                # gs.parse_biaoge(browser)
 
-            # # 国税缴款查询
-            # jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
-            # browser.get(url=jk_url)
-            # gs.parse_jiaokuan(browser)
+                # # 国税缴款查询
+                # jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
+                # browser.get(url=jk_url)
+                # gs.parse_jiaokuan(browser)
             #
-            # # 地税查询
-            # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
-            # browser.get(url=ds_url)
-            # gs.dishui(browser)
+                # # 地税查询
+                # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
+                # browser.get(url=ds_url)
+                # gs.dishui(browser)
+            except Exception as e:
+                job_finish(host, port, db, batchid, companyid, customerid, '-1', 'e')
             job_finish(host, port, db, batchid,companyid,customerid, '1', '成功爬取')
             print("爬取完成")
             browser.quit()
