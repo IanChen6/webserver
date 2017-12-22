@@ -480,6 +480,7 @@ class guoshui(object):
                         browser.find_element_by_xpath(
                             '//table[@id="ysbjl_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                                 index)).click()
+                        time.sleep(3)
                         browser.find_element_by_css_selector('#print').click()
                         # url=browser.find_element_by_name('sbbFormCj').get_attribute('action')
                         jsxx = i.xpath('.//text()')
@@ -494,18 +495,17 @@ class guoshui(object):
                         post_data = {'SubmitTokenTokenId': '', 'yzpzxhArray': pzxh, 'btSelectItem': 'on'}
                         headers = {'Accept': 'application/json, text/javascript, */*; q=0.01',
                                    'Accept-Language': 'zh-CN,zh;q=0.8',
-                                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-                                   }
+                                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+                                   'X-Requested-With': 'XMLHttpRequest'}
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
 
-                        if b'html' not in pdf_content:
-                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                                w.write(pdf_content)
-                            pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                            pdf_list.append(pdf)
-                        else:
-                            pdf = "pdf无法打开"
+
+                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            w.write(pdf_content)
+                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf_list.append(pdf)
+
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                             str(jsxx[1]),
@@ -548,6 +548,7 @@ class guoshui(object):
                         browser.find_element_by_xpath(
                             '//table[@id="ysbjl_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                                 index)).click()
+                        time.sleep(2)
                         browser.find_element_by_css_selector('#print').click()
                         # url=browser.find_element_by_name('sbbFormCj').get_attribute('action')
                         jsxx = i.xpath('.//text()')
@@ -562,17 +563,16 @@ class guoshui(object):
                         post_data = {'SubmitTokenTokenId': '', 'yzpzxhArray': pzxh, 'btSelectItem': 'on'}
                         headers = {'Accept': 'application/json, text/javascript, */*; q=0.01',
                                    'Accept-Language': 'zh-CN,zh;q=0.8',
-                                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-                                   }
+                                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+                                   'X-Requested-With': 'XMLHttpRequest'}
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
-                        if b'html' not in pdf_content:
-                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                                w.write(pdf_content)
-                            pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                            pdf_list.append(pdf)
-                        else:
-                            pdf = "pdf无法打开"
+
+                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            w.write(pdf_content)
+                        pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf_list.append(pdf1)
+
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                             str(jsxx[1]),
@@ -612,6 +612,7 @@ class guoshui(object):
                         browser.find_element_by_xpath(
                             '//table[@id="ysbjl_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                                 index)).click()
+                        time.sleep(2)
                         browser.find_element_by_css_selector('#print').click()
                         # url=browser.find_element_by_name('sbbFormCj').get_attribute('action')
                         jsxx = i.xpath('.//text()')
@@ -626,17 +627,16 @@ class guoshui(object):
                         post_data = {'SubmitTokenTokenId': '', 'yzpzxhArray': pzxh, 'btSelectItem': 'on'}
                         headers = {'Accept': 'application/json, text/javascript, */*; q=0.01',
                                    'Accept-Language': 'zh-CN,zh;q=0.8',
-                                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-                                   }
+                                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+                                   'X-Requested-With': 'XMLHttpRequest'}
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
-                        if b'html' not in pdf_content:
-                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                                w.write(pdf_content)
-                            pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                            pdf_list.append(pdf)
-                        else:
-                            pdf = "pdf无法打开"
+
+                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            w.write(pdf_content)
+                        pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf_list.append(pdf2)
+
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                             str(jsxx[1]),
@@ -749,6 +749,7 @@ class guoshui(object):
                     browser.find_element_by_xpath(
                         '//table[@id="ysbjl_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                             index)).click()
+                    time.sleep(2)
                     browser.find_element_by_css_selector('#print').click()
                     # url=browser.find_element_by_name('sbbFormCj').get_attribute('action')
                     jsxx = i.xpath('.//text()')
@@ -763,18 +764,15 @@ class guoshui(object):
                     post_data = {'SubmitTokenTokenId': '', 'yzpzxhArray': pzxh, 'btSelectItem': 'on'}
                     headers = {'Accept': 'application/json, text/javascript, */*; q=0.01',
                                'Accept-Language': 'zh-CN,zh;q=0.8',
-                               'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-                               }
+                               'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+                               'X-Requested-With': 'XMLHttpRequest'}
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
-                    if b'html' not in pdf_content:
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                            w.write(pdf_content)
-                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                        pdf_list.append(pdf)
-                    else:
-                        pdf = "pdf无法打开"
+                    with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                        w.write(pdf_content)
+                    pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                    pdf_list.append(pdf)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
@@ -817,6 +815,7 @@ class guoshui(object):
                     browser.find_element_by_xpath(
                         '//table[@id="ysbjl_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                             index)).click()
+                    time.sleep(2)
                     browser.find_element_by_css_selector('#print').click()
                     # url=browser.find_element_by_name('sbbFormCj').get_attribute('action')
                     jsxx = i.xpath('.//text()')
@@ -831,17 +830,16 @@ class guoshui(object):
                     post_data = {'SubmitTokenTokenId': '', 'yzpzxhArray': pzxh, 'btSelectItem': 'on'}
                     headers = {'Accept': 'application/json, text/javascript, */*; q=0.01',
                                'Accept-Language': 'zh-CN,zh;q=0.8',
-                               'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-                               }
+                               'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+                               'X-Requested-With': 'XMLHttpRequest'}
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
-                    if b'html' not in pdf_content:
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                            w.write(pdf_content)
-                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                        pdf_list.append(pdf)
-                    else:
-                        pdf = "pdf无法打开"
+
+                    with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                        w.write(pdf_content)
+                    pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                    pdf_list.append(pdf1)
+
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
@@ -881,6 +879,7 @@ class guoshui(object):
                     browser.find_element_by_xpath(
                         '//table[@id="ysbjl_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                             index)).click()
+                    time.sleep(2)
                     browser.find_element_by_css_selector('#print').click()
                     # url=browser.find_element_by_name('sbbFormCj').get_attribute('action')
                     jsxx = i.xpath('.//text()')
@@ -895,17 +894,15 @@ class guoshui(object):
                     post_data = {'SubmitTokenTokenId': '', 'yzpzxhArray': pzxh, 'btSelectItem': 'on'}
                     headers = {'Accept': 'application/json, text/javascript, */*; q=0.01',
                                'Accept-Language': 'zh-CN,zh;q=0.8',
-                               'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
-                               }
+                               'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+                               'X-Requested-With': 'XMLHttpRequest'}
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
-                    if b'html' not in pdf_content:
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                            w.write(pdf_content)
-                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                        pdf_list.append(pdf)
-                    else:
-                        pdf = "pdf无法打开"
+
+                    with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                        w.write(pdf_content)
+                    pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                    pdf_list.append(pdf2)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
@@ -938,7 +935,7 @@ class guoshui(object):
                 browser.save_screenshot('dsjk%s%s.png' % (self.batchid, a))
                 file_list['dsjk%s.png' % a] = self.upload_img('dsjk%s%s.png' % (self.batchid, a))
                 jknr=requests.get(url='https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=queryDetail&xtsphm=' + id.text + '&dzswjRandonNum%20=' + str(random.randint(1000, 9999)), headers=headers, cookies=ck).content
-                print(jknr)
+                # print(jknr)
                 if b"WARNING" not in jknr:
                     with open('dishui%sjkjt%s.html' % (self.batchid, a), 'wb') as x:
                         x.write(requests.get(
@@ -1021,63 +1018,63 @@ class guoshui(object):
     # logger.info("截取地税缴款信息已完成")
 
 
-# start = time.time()
-# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=2, batchyear=2017, companyid=18282900,
-#              customerid=13)
-# cookies, session = gs.login()
-# jsoncookies = json.dumps(cookies)
-# with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
-#     f.write(jsoncookies)
-#     f.close()
-# # chrome_options = Options()
-# # chrome_options.add_argument("--window-size=1280,2000")
-# # browser = webdriver.Chrome(executable_path='D:/BaiduNetdiskDownload/chromedriver.exe')  # 添加driver的路径
-# dcap = dict(DesiredCapabilities.PHANTOMJS)
-# dcap["phantomjs.page.settings.userAgent"] = (
-#     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
-# dcap["phantomjs.page.settings.loadImages"] = False
-# browser = webdriver.PhantomJS(executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
-#                               desired_capabilities=dcap)  # 添加driver的路径
-# browser.viewportSize = {'width': 2200, 'height': 2200}
-# browser.implicitly_wait(10)
-# browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
-# index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
-# browser.get(url=index_url)
-# browser.delete_all_cookies()
-# with open('cookies.json', 'r', encoding='utf8') as f:
-#     cookielist = json.loads(f.read())
-# for (k, v) in cookielist.items():
-#     browser.add_cookie({
-#         'domain': '.szgs.gov.cn',  # 此处xxx.com前，需要带点
-#         'name': k,
-#         'value': v,
-#         'path': '/',
-#         'expires': None})
-# shenbao_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html'
-# browser.get(url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html")
-# browser.get(url=shenbao_url)
-#
-# # threads=[]
-# # gs.shuizhongchaxun(browser)
-# # t1=threading.Thread(target=gs.parse_biaoge,args=(browser,))
-# # 国税缴款查询
-# # jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
-# # browser.get(url=jk_url)
-#
-# # gs.parse_jiaokuan(browser)
-#
-# # 地税查询
-# ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
-# browser.get(url=ds_url)
-#
-# gs.qwdishui(browser)
-# # t3=threading.Thread(target=gs.dishui,args=(browser,))
-# # threads.append(t1)
-# # threads.append(t2)
-# # threads.append(t3)
-# # for t in threads:
-# #     t.start()
-#
-# end = time.time()
-# expend = end - start
-# print(expend)
+start = time.time()
+gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=12, batchyear=2017, companyid=18282900,
+             customerid=13)
+cookies, session = gs.login()
+jsoncookies = json.dumps(cookies)
+with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
+    f.write(jsoncookies)
+    f.close()
+# chrome_options = Options()
+# chrome_options.add_argument("--window-size=1280,2000")
+# browser = webdriver.Chrome(executable_path='D:/BaiduNetdiskDownload/chromedriver.exe')  # 添加driver的路径
+dcap = dict(DesiredCapabilities.PHANTOMJS)
+dcap["phantomjs.page.settings.userAgent"] = (
+    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
+dcap["phantomjs.page.settings.loadImages"] = False
+browser = webdriver.PhantomJS(executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
+                              desired_capabilities=dcap)  # 添加driver的路径
+browser.viewportSize = {'width': 2200, 'height': 2200}
+browser.implicitly_wait(10)
+browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
+index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
+browser.get(url=index_url)
+browser.delete_all_cookies()
+with open('cookies.json', 'r', encoding='utf8') as f:
+    cookielist = json.loads(f.read())
+for (k, v) in cookielist.items():
+    browser.add_cookie({
+        'domain': '.szgs.gov.cn',  # 此处xxx.com前，需要带点
+        'name': k,
+        'value': v,
+        'path': '/',
+        'expires': None})
+shenbao_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html'
+browser.get(url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html")
+browser.get(url=shenbao_url)
+
+# threads=[]
+# gs.shuizhongchaxun(browser)
+# t1=threading.Thread(target=gs.parse_biaoge,args=(browser,))
+# 国税缴款查询
+# jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
+# browser.get(url=jk_url)
+
+# gs.parse_jiaokuan(browser)
+
+# 地税查询
+ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
+browser.get(url=ds_url)
+
+gs.qwdishui(browser)
+# t3=threading.Thread(target=gs.dishui,args=(browser,))
+# threads.append(t1)
+# threads.append(t2)
+# threads.append(t3)
+# for t in threads:
+#     t.start()
+
+end = time.time()
+expend = end - start
+print(expend)
