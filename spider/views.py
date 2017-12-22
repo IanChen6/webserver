@@ -98,10 +98,10 @@ def search_post(request):
                 gs.shuizhongchaxun(browser)
                 # gs.parse_biaoge(browser)
 
-                # # 国税缴款查询
-                # jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
-                # browser.get(url=jk_url)
-                # gs.parse_jiaokuan(browser)
+                # 国税缴款查询
+                jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
+                browser.get(url=jk_url)
+                gs.parse_jiaokuan(browser)
             #
                 # # 地税查询
                 # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
