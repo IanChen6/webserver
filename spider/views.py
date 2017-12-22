@@ -115,7 +115,7 @@ def search_post(request):
 
             except Exception as e:
                 browser.quit()
-                job_finish(host, port, db, batchid, companyid, customerid, '-1', 'e')
+                job_finish(host, port, db, batchid, companyid, customerid, '-1', e)
                 return HttpResponse("爬取失败")
 
     return HttpResponse("信息输入错误")

@@ -404,20 +404,19 @@ class guoshui(object):
                 self.insert_db("[dbo].[Python_Serivce_GSTaxChargeShenZhen_Add]", params)
             logger.info("截取国税缴款信息已完成")
 
-    # 地税
+    # 前往地税
+    def qwdishui(self,browser):
+        logger.info("开始登录地税")
+        wait = ui.WebDriverWait(browser, 10)
+        wait.until(lambda browser: browser.find_element_by_css_selector("#mini-29 .mini-button-text"))
+        browser.find_element_by_css_selector("#mini-29 .mini-button-text").click()
+        browser.find_element_by_css_selector("#mini-27 .mini-button-text").click()
+        browser.find_element_by_xpath("//a[@href='javascript:gotoDs()']").click()
+
     def dishui(self, browser):
         dssburl="https://dzswj.szds.gov.cn/dzswj/sbxxcx.do?method=toSbxxCx&qyyhDzswjRandomNum=0.8848089702580486"
         logger.info("截取地税申报信息")
-        logger.info("开始登陆地税")
-        try:
-            wait = ui.WebDriverWait(browser, 10)
-            wait.until(lambda browser: browser.find_element_by_css_selector("#mini-29 .mini-button-text"))
-            browser.find_element_by_css_selector("#mini-29 .mini-button-text").click()
-            browser.find_element_by_css_selector("#mini-27 .mini-button-text").click()  # 跳转页面的两个弹出框
-        except Exception:
-            logger.info("服务器恢复正常")
-        browser.find_element_by_xpath("//a[@href='javascript:gotoDs()']").click()
-        time.sleep(3)
+        time.sleep(2)
         windows = browser.window_handles
         window1 = browser.current_window_handle
         for c_window in windows:
@@ -913,7 +912,7 @@ class guoshui(object):
 
 
 # start = time.time()
-# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=8, batchyear=2017, companyid=18282900,
+# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=12, batchyear=2017, companyid=18282900,
 #              customerid=13)
 # cookies, session = gs.login()
 # jsoncookies = json.dumps(cookies)
@@ -952,16 +951,16 @@ class guoshui(object):
 # # gs.shuizhongchaxun(browser)
 # # t1=threading.Thread(target=gs.parse_biaoge,args=(browser,))
 # # 国税缴款查询
-# jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
-# browser.get(url=jk_url)
+# # jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
+# # browser.get(url=jk_url)
 #
 # # gs.parse_jiaokuan(browser)
-# # t2=threading.Thread(target=gs.parse_jiaokuan,args=(browser,))
+#
 # # 地税查询
 # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
 # browser.get(url=ds_url)
 #
-# gs.dishui(browser)
+# gs.qwdishui(browser)
 # # t3=threading.Thread(target=gs.dishui,args=(browser,))
 # # threads.append(t1)
 # # threads.append(t2)
