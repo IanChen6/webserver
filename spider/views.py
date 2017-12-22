@@ -104,9 +104,10 @@ def search_post(request):
                 gs.parse_jiaokuan(browser)
             #
                 # # 地税查询
-                # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
-                # browser.get(url=ds_url)
-                # gs.dishui(browser)
+                ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
+                browser.get(url=ds_url)
+                gs.qwdishui(browser)
+
                 job_finish(host, port, db, batchid,companyid,customerid, '1', '成功爬取')
                 print("爬取完成")
                 logger.info("全部爬取完成")
