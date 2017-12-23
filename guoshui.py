@@ -701,7 +701,7 @@ class guoshui(object):
                         file_list['yjkjt%s.html' % a] = self.upload_img('dishui%sjkjt%s.html' % (self.batchid, a))
                     # 数据入库
                     jk_data = {
-                        'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"2017-07-01","jkqz":"2017-09-01"}'}
+                        'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"{}","jkqz":"{}"}'.format(qsrq,zzrq)}
                     jk_json_url = 'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.json?method=queryPage&order=asc&limit=10&offset=0&queryMode=true&' + urlencode(
                         jk_data)
                     jk_html = requests.get(url=jk_json_url, headers=headers, cookies=ck).json()['rows']
@@ -787,8 +787,8 @@ class guoshui(object):
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
                         None,
-                        str(jsxx[2]), None,
-                        str(jsxx[3]), None, None,
+                        str(jsxx[2]), "",
+                        str(jsxx[3]), "", "",
                         self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
@@ -960,7 +960,7 @@ class guoshui(object):
                     file_list['yjkjt%s.html' % a] = self.upload_img('dishui%sjkjt%s.html' % (self.batchid, a))
                 # 数据入库
                 jk_data = {
-                    'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"2017-07-01","jkqz":"2017-09-01"}'}
+                    'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"{}-{}-01","jkqz":"{}-{}-{}"}'.format(self.batchyear, self.batchmonth,self.batchyear, self.batchmonth, self.days)}
                 jk_json_url = 'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.json?method=queryPage&order=asc&limit=10&offset=0&queryMode=true&' + urlencode(
                     jk_data)
                 jk_html = requests.get(url=jk_json_url, headers=headers, cookies=ck).json()['rows']
