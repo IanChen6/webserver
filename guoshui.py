@@ -517,7 +517,7 @@ class guoshui(object):
                         self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                         index += 1
 
-                # browser.get("https://dzswj.szds.gov.cn/dzswj/sbxxcx.do?method=toSbxxCx&qyyhDzswjRandomNum=0.8848089702580486")
+
                 # 城市建设税
                 browser.switch_to_default_content()
                 browser.switch_to_frame('qyIndex')
@@ -669,51 +669,79 @@ class guoshui(object):
                 logger.info("查询{}月".format(m))
                 # 已缴款查询
                 logger.info("截取地税缴款信息")
-                browser.get(
-                    'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=init&qyyhDzswjRandomNum=0.08405041267793534')
-                time.sleep(1)
+                browser.switch_to_default_content()
+                browser.switch_to_frame('qyIndex')
+                browser.find_element_by_css_selector('#menu3_17_110204').click()
+                browser.switch_to_frame('qymain')
+                gbds = browser.window_handles
+                dq = browser.current_window_handle
+                for s in gbds:
+                    if s != dq:
+                        browser.switch_to_window(s)
+                        browser.close()
+                        browser.switch_to_window(dq)
+                page = browser.page_source
+                # browser.switch_to_window(window1)
+                wait = ui.WebDriverWait(browser, 10)
+                wait.until(lambda browser: browser.find_element_by_css_selector('#jkqq'))
                 ds_start_date = browser.find_element_by_xpath('//*[@id="jkqq"]')
                 ds_start_date.clear()
                 ds_start_date.send_keys(qsrq)
                 ds_end_date = browser.find_element_by_xpath("//*[@id='jkqz']")
                 ds_end_date.clear()
                 ds_end_date.send_keys(zzrq)
-                browser.find_element_by_xpath('//*[@id="query"]').click()
-                time.sleep(1.5)
-                jkpdf_id = browser.find_elements_by_xpath('//tr[@data-index]/td[2]')
-                a = 1
-                for id in jkpdf_id:
-                    file_list = {}
-                    ActionChains(browser).move_to_element(id).perform()
-                    browser.viewportSize = {'width': 2200, 'height': 2200}
-                    browser.implicitly_wait(10)
-                    browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
-                    browser.save_screenshot('dsjk%s%s.png' % (self.batchid, a))
-                    file_list['dsjk%s.png' % a] = self.upload_img('dsjk%s%s.png' % (self.batchid, a))
-                    jknr = requests.get(
-                        url='https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=queryDetail&xtsphm=' + id.text + '&dzswjRandonNum%20=' + str(
-                            random.randint(1000, 9999)), headers=headers, cookies=ck).content
-                    if b"WARNING" not in jknr:
-                        with open('dishui%sjkjt%s.html' % (self.batchid, a), 'wb') as x:
-                            x.write(requests.get(
-                            url='https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=queryDetail&xtsphm=' + id.text + '&dzswjRandonNum%20=' + str(
-                                random.randint(1000, 9999)), headers=headers, cookies=ck).content)
-                        file_list['yjkjt%s.html' % a] = self.upload_img('dishui%sjkjt%s.html' % (self.batchid, a))
-                    # 数据入库
-                    jk_data = {
-                        'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"%s","jkqz":"%s"}' % (qsrq, zzrq)}
-                    jk_json_url = 'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.json?method=queryPage&order=asc&limit=10&offset=0&queryMode=true&' + urlencode(
-                        jk_data)
-                    jk_html = requests.get(url=jk_json_url, headers=headers, cookies=ck).json()['rows']
-                    item = jk_html[a - 1]
+                # time.sleep(1)
+                browser.find_element_by_css_selector('#query').click()
+                time.sleep(2)
+                jietu = self.save_png(browser, '地税已缴款查询.png')
+                # browser.save_screenshot('地税已缴款查询.png')
+                # 缴款表格信息爬取
+                content = browser.page_source
+                root = etree.HTML(content)
+                select = root.xpath('//table[@id="yjkxx_table"]/tbody/tr')
+                index2 = 0
+                pz_l = []
+                pz_t = 0
+                jietulist = []
+                jietulist.append(jietu)
+                for i in select:
+                    jkxx = i.xpath('.//text()')
+                    pz = jkxx[0]
+                    print(jkxx)
+                    pz_l.append(pz)
+                    if pz != pz_t:
+                        browser.find_element_by_xpath(
+                            '//table[@id="yjkxx_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
+                                index2)).click()
+                        wait.until(lambda browser: browser.find_element_by_css_selector('#cxjkmx'))
+                        browser.find_element_by_css_selector('#cxjkmx').click()
+                        windows = browser.window_handles
+                        window2 = browser.current_window_handle
+                        for c_window in windows:
+                            if c_window != window2:
+                                browser.switch_to_window(c_window)
+                                cc = browser.page_source
+                                time.sleep(0.5)
+                                if "错误" not in cc:
+                                    png_name = "缴款凭证号{}.png".format(pz)
+                                    j = self.save_png(browser, png_name)
+                                    jietulist.append(j)
+                                # browser.save_screenshot(png_name)
+                                browser.close()
+                                browser.switch_to_window(window2)
+                                time.sleep(1)
+                                browser.switch_to_frame('qyIndex')
+                                browser.switch_to_frame('qymain')
+                    pz_t = pz
+                    index2 += 1
                     params = (
-                        self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, item['xtsphm'],
-                        item['yzpzxh'],
-                        item['yzpzzlMc'], item['skssqq'], item['skssqz'], item['jkqx'], item['jkrq'], item['se'],
-                        json.dumps(file_list))
+                        self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(jkxx[0]),
+                        str(jkxx[1]),
+                        str(jkxx[2]),
+                        str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
+                        self.img2json(jietulist))
                     self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
-                    a = a + 1
-                    logger.info("地税缴款查询成功")
+                logger.info("截取地税缴款信息已完成")
         else:
             # 查询个人所得税
             wait = ui.WebDriverWait(browser, 10)
@@ -793,7 +821,7 @@ class guoshui(object):
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
 
-            # browser.get("https://dzswj.szds.gov.cn/dzswj/sbxxcx.do?method=toSbxxCx&qyyhDzswjRandomNum=0.8848089702580486")
+
             # 城市建设税
             browser.switch_to_default_content()
             browser.switch_to_frame('qyIndex')
@@ -929,124 +957,95 @@ class guoshui(object):
                     index += 1
             logger.info("截取地税申报信息已完成")
             # 已缴款查询
-            logger.info("截取地税缴款信息")
-            browser.get('https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=init&qyyhDzswjRandomNum=0.08405041267793534')
-            time.sleep(1)
+            gbds=browser.window_handles
+            dq=browser.current_window_handle
+            for s in gbds:
+                if s != dq:
+                    browser.switch_to_window(s)
+                    browser.close()
+                    browser.switch_to_window(dq)
+
+            browser.switch_to_default_content()
+            browser.switch_to_frame('qyIndex')
+            browser.find_element_by_css_selector('#menu3_17_110204').click()
+            browser.switch_to_frame('qymain')
+
+            page = browser.page_source
+            # browser.switch_to_window(window1)
+            wait = ui.WebDriverWait(browser, 10)
+            wait.until(lambda browser: browser.find_element_by_css_selector('#jkqq'))
             ds_start_date = browser.find_element_by_xpath('//*[@id="jkqq"]')
             ds_start_date.clear()
             ds_start_date.send_keys('{}-{}-01'.format(self.batchyear, self.batchmonth))
             ds_end_date = browser.find_element_by_xpath("//*[@id='jkqz']")
             ds_end_date.clear()
             ds_end_date.send_keys('{}-{}-{}'.format(self.batchyear, self.batchmonth, self.days))
-            browser.find_element_by_xpath('//*[@id="query"]').click()
-            time.sleep(1.5)
-            jkpdf_id = browser.find_elements_by_xpath('//tr[@data-index]/td[2]')
-            a = 1
-            for id in jkpdf_id:
-                file_list = {}
-                ActionChains(browser).move_to_element(id).perform()
-                browser.viewportSize = {'width': 2200, 'height': 2200}
-                browser.implicitly_wait(10)
-                browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
-                browser.save_screenshot('dsjk%s%s.png' % (self.batchid, a))
-                file_list['dsjk%s.png' % a] = self.upload_img('dsjk%s%s.png' % (self.batchid, a))
-                jknr=requests.get(url='https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=queryDetail&xtsphm=' + id.text + '&dzswjRandonNum%20=' + str(random.randint(1000, 9999)), headers=headers, cookies=ck).content
-                # print(jknr)
-                if b"WARNING" not in jknr:
-                    with open('dishui%sjkjt%s.html' % (self.batchid, a), 'wb') as x:
-                        x.write(requests.get(
-                        url='https://dzswj.szds.gov.cn/dzswj/yjkxxcx.do?method=queryDetail&xtsphm=' + id.text + '&dzswjRandonNum%20=' + str(
-                            random.randint(1000, 9999)), headers=headers, cookies=ck).content)
-                    file_list['yjkjt%s.html' % a] = self.upload_img('dishui%sjkjt%s.html' % (self.batchid, a))
-                # 数据入库
-                jkqq='{}-{}-01'.format(self.batchyear, self.batchmonth)
-                jkqz='{}-{}-{}'.format(self.batchyear, self.batchmonth, self.days)
-                jk_data = {
-                    'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"%s","jkqz":"%s"}'%(jkqq,jkqz)}
-                jk_json_url = 'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.json?method=queryPage&order=asc&limit=10&offset=0&queryMode=true&' + urlencode(
-                    jk_data)
-                jk_html = requests.get(url=jk_json_url, headers=headers, cookies=ck).json()['rows']
-                item = jk_html[a - 1]
+            # time.sleep(1)
+            browser.find_element_by_css_selector('#query').click()
+            time.sleep(2)
+            jietu=self.save_png(browser, '地税已缴款查询.png')
+            # browser.save_screenshot('地税已缴款查询.png')
+            # 缴款表格信息爬取
+            content = browser.page_source
+            root = etree.HTML(content)
+            select = root.xpath('//table[@id="yjkxx_table"]/tbody/tr')
+            index2 = 0
+            pz_l = []
+            pz_t=0
+            jietulist=[]
+            jietulist.append(jietu)
+
+            for i in select:
+                jkxx = i.xpath('.//text()')
+                pz = jkxx[0]
+                print(jkxx)
+                pz_l.append(pz)
+                if pz !=pz_t:
+                    browser.find_element_by_xpath(
+                    '//table[@id="yjkxx_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(index2)).click()
+                    wait.until(lambda browser: browser.find_element_by_css_selector('#cxjkmx'))
+                    browser.find_element_by_css_selector('#cxjkmx').click()
+                    windows = browser.window_handles
+                    window2 = browser.current_window_handle
+                    for c_window in windows:
+                        if c_window != window2:
+                            browser.switch_to_window(c_window)
+                            cc=browser.page_source
+                            time.sleep(0.5)
+                            png_name = "缴款凭证号{}.png".format(pz)
+                            j=self.save_png(browser, png_name)
+                            jietulist.append(j)
+                            browser.close()
+                            browser.switch_to_window(window2)
+                            time.sleep(1)
+                            browser.switch_to_frame('qyIndex')
+                            browser.switch_to_frame('qymain')
+                pz_t=pz
+                index2 += 1
                 params = (
-                    self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, item['xtsphm'],
-                    item['yzpzxh'],
-                    item['yzpzzlMc'], item['skssqq'], item['skssqz'], item['jkqx'], item['jkrq'], item['se'],
-                    json.dumps(file_list))
+                    self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(jkxx[0]), str(jkxx[1]),
+                    str(jkxx[2]),
+                    str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
+                    self.img2json(jietulist))
                 self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
-                a = a + 1
-                logger.info("地税缴款查询成功")
+            logger.info("截取地税缴款信息已完成")
 
 
 
-    # browser.switch_to_default_content()
-    # browser.switch_to_frame('qyIndex')
-    # browser.find_element_by_css_selector('#menu3_17_110204').click()
-    # browser.switch_to_frame('qymain')
-
-    # page = browser.page_source
-    # # browser.switch_to_window(window1)
-    # wait = ui.WebDriverWait(browser, 10)
-    # wait.until(lambda browser: browser.find_element_by_css_selector('#jkqq'))
-    # browser.find_element_by_css_selector('#jkqq').clear()
-    # browser.find_element_by_css_selector('#jkqq').send_keys('2017-07-01')
-    # browser.find_element_by_css_selector('#jkqz').clear()
-    # browser.find_element_by_css_selector('#jkqz').send_keys('2017-09-30')
-    # # time.sleep(1)
-    # browser.find_element_by_css_selector('#query').click()
-    # time.sleep(2)
-    # jietu=self.save_png(browser, '地税已缴款查询.png')
-    # # browser.save_screenshot('地税已缴款查询.png')
-    # # 缴款表格信息爬取
-    # content = browser.page_source
-    # root = etree.HTML(content)
-    # select = root.xpath('//table[@id="yjkxx_table"]/tbody/tr')
-    # index2 = 0
-    # pz_l = []
-    # for i in select:
-    #     jkxx = i.xpath('.//text()')
-    #     pz = jkxx[0]
-    #     print(jkxx)
-    #     index2 += 1
-    #     pz_l.append(pz)
-    #     params = (
-    #         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(jkxx[0]), str(jkxx[1]),
-    #         str(jkxx[2]),
-    #         str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
-    #         jietu)
-    #     self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
-    # for i in range(1, int(index2 / 3) + 1):
-    #     browser.find_element_by_xpath(
-    #         '//table[@id="yjkxx_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
-    #             i * 3 - 1)).click()
-    #     wait.until(lambda browser: browser.find_element_by_css_selector('#cxjkmx'))
-    #     browser.find_element_by_css_selector('#cxjkmx').click()
-    #     windows = browser.window_handles
-    #     window2 = browser.current_window_handle
-    #     for c_window in windows:
-    #         if c_window != window2:
-    #             browser.switch_to_window(c_window)
-    #             png_name = "缴款凭证号{}.png".format(pz_l[i * 3 - 1])
-    #             self.save_png(browser, png_name)
-    #             # browser.save_screenshot(png_name)
-    #             browser.close()
-    #             browser.switch_to_window(window2)
-    #             time.sleep(1)
-    #             browser.switch_to_frame('qyIndex')
-    #             browser.switch_to_frame('qymain')
-    # logger.info("截取地税缴款信息已完成")
 
 
-# start = time.time()
-# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=12, batchyear=2017, companyid=18282900,
-#              customerid=13)
-# cookies, session = gs.login()
-# jsoncookies = json.dumps(cookies)
-# with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
-#     f.write(jsoncookies)
-#     f.close()
-# # chrome_options = Options()
-# # chrome_options.add_argument("--window-size=1280,2000")
-# # browser = webdriver.Chrome(executable_path='D:/BaiduNetdiskDownload/chromedriver.exe')  # 添加driver的路径
+
+start = time.time()
+gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=11, batchyear=2017, companyid=18282900,
+             customerid=13)
+cookies, session = gs.login()
+jsoncookies = json.dumps(cookies)
+with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
+    f.write(jsoncookies)
+    f.close()
+# chrome_options = Options()
+# chrome_options.add_argument("--window-size=1280,2000")
+browser = webdriver.Chrome(executable_path='D:/BaiduNetdiskDownload/chromedriver.exe')  # 添加driver的路径
 # dcap = dict(DesiredCapabilities.PHANTOMJS)
 # dcap["phantomjs.page.settings.userAgent"] = (
 #     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
@@ -1056,43 +1055,43 @@ class guoshui(object):
 # browser.viewportSize = {'width': 2200, 'height': 2200}
 # browser.implicitly_wait(10)
 # browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
-# index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
-# browser.get(url=index_url)
-# browser.delete_all_cookies()
-# with open('cookies.json', 'r', encoding='utf8') as f:
-#     cookielist = json.loads(f.read())
-# for (k, v) in cookielist.items():
-#     browser.add_cookie({
-#         'domain': '.szgs.gov.cn',  # 此处xxx.com前，需要带点
-#         'name': k,
-#         'value': v,
-#         'path': '/',
-#         'expires': None})
-# shenbao_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html'
-# browser.get(url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html")
-# browser.get(url=shenbao_url)
-#
-# # threads=[]
-# # gs.shuizhongchaxun(browser)
-# # t1=threading.Thread(target=gs.parse_biaoge,args=(browser,))
-# # 国税缴款查询
-# # jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
-# # browser.get(url=jk_url)
-#
-# # gs.parse_jiaokuan(browser)
-#
-# # 地税查询
-# ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
-# browser.get(url=ds_url)
-#
-# gs.qwdishui(browser)
-# # t3=threading.Thread(target=gs.dishui,args=(browser,))
-# # threads.append(t1)
-# # threads.append(t2)
-# # threads.append(t3)
-# # for t in threads:
-# #     t.start()
-#
-# end = time.time()
-# expend = end - start
-# print(expend)
+index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
+browser.get(url=index_url)
+browser.delete_all_cookies()
+with open('cookies.json', 'r', encoding='utf8') as f:
+    cookielist = json.loads(f.read())
+for (k, v) in cookielist.items():
+    browser.add_cookie({
+        'domain': '.szgs.gov.cn',  # 此处xxx.com前，需要带点
+        'name': k,
+        'value': v,
+        'path': '/',
+        'expires': None})
+shenbao_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/cxdy/sbcx.html'
+browser.get(url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html")
+browser.get(url=shenbao_url)
+
+# threads=[]
+# gs.shuizhongchaxun(browser)
+# t1=threading.Thread(target=gs.parse_biaoge,args=(browser,))
+# 国税缴款查询
+# jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
+# browser.get(url=jk_url)
+
+# gs.parse_jiaokuan(browser)
+
+# 地税查询
+ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
+browser.get(url=ds_url)
+
+gs.qwdishui(browser)
+# t3=threading.Thread(target=gs.dishui,args=(browser,))
+# threads.append(t1)
+# threads.append(t2)
+# threads.append(t3)
+# for t in threads:
+#     t.start()
+
+end = time.time()
+expend = end - start
+print(expend)
