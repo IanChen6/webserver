@@ -701,7 +701,7 @@ class guoshui(object):
                         file_list['yjkjt%s.html' % a] = self.upload_img('dishui%sjkjt%s.html' % (self.batchid, a))
                     # 数据入库
                     jk_data = {
-                        'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"{}","jkqz":"{}"}'.format(qsrq,zzrq)}
+                        'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"%s","jkqz":"%s"}' % (qsrq, zzrq)}
                     jk_json_url = 'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.json?method=queryPage&order=asc&limit=10&offset=0&queryMode=true&' + urlencode(
                         jk_data)
                     jk_html = requests.get(url=jk_json_url, headers=headers, cookies=ck).json()['rows']
@@ -959,8 +959,10 @@ class guoshui(object):
                             random.randint(1000, 9999)), headers=headers, cookies=ck).content)
                     file_list['yjkjt%s.html' % a] = self.upload_img('dishui%sjkjt%s.html' % (self.batchid, a))
                 # 数据入库
+                jkqq='{}-{}-01'.format(self.batchyear, self.batchmonth)
+                jkqz='{}-{}-{}'.format(self.batchyear, self.batchmonth, self.days)
                 jk_data = {
-                    'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"{}-{}-01","jkqz":"{}-{}-{}"}'.format(self.batchyear, self.batchmonth,self.batchyear, self.batchmonth, self.days)}
+                    'condition': '{"xtsphm":"","yzpzxh":"","skssqq":"","skssqz":"","jkqq":"%s","jkqz":"%s"}'%(jkqq,jkqz)}
                 jk_json_url = 'https://dzswj.szds.gov.cn/dzswj/yjkxxcx.json?method=queryPage&order=asc&limit=10&offset=0&queryMode=true&' + urlencode(
                     jk_data)
                 jk_html = requests.get(url=jk_json_url, headers=headers, cookies=ck).json()['rows']
