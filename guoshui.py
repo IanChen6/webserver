@@ -497,15 +497,16 @@ class guoshui(object):
                                    'Accept-Language': 'zh-CN,zh;q=0.8',
                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                    'X-Requested-With': 'XMLHttpRequest'}
+                        resp = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                             cookies=ck).text
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
 
-
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                            w.write(pdf_content)
-                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                        pdf_list.append(pdf)
-
+                        if "错误" not in resp:
+                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                                w.write(pdf_content)
+                            pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                            pdf_list.append(pdf)
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                             str(jsxx[1]),
@@ -565,13 +566,16 @@ class guoshui(object):
                                    'Accept-Language': 'zh-CN,zh;q=0.8',
                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                    'X-Requested-With': 'XMLHttpRequest'}
+                        resp1 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                             cookies=ck).text
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
 
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                            w.write(pdf_content)
-                        pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                        pdf_list.append(pdf1)
+                        if "错误" not in resp1:
+                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                                w.write(pdf_content)
+                            pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                            pdf_list.append(pdf1)
 
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
@@ -629,13 +633,16 @@ class guoshui(object):
                                    'Accept-Language': 'zh-CN,zh;q=0.8',
                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                    'X-Requested-With': 'XMLHttpRequest'}
+                        resp2 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                             cookies=ck).text
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
 
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                            w.write(pdf_content)
-                        pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                        pdf_list.append(pdf2)
+                        if "错误" not in resp2:
+                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                                w.write(pdf_content)
+                            pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                            pdf_list.append(pdf2)
 
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
@@ -766,13 +773,16 @@ class guoshui(object):
                                'Accept-Language': 'zh-CN,zh;q=0.8',
                                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                'X-Requested-With': 'XMLHttpRequest'}
+                    resp=requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                  cookies=ck).text
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
-                    with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                        w.write(pdf_content)
-                    pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                    pdf_list.append(pdf)
+                    if "错误" not in resp:
+                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            w.write(pdf_content)
+                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf_list.append(pdf)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
@@ -832,13 +842,16 @@ class guoshui(object):
                                'Accept-Language': 'zh-CN,zh;q=0.8',
                                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                'X-Requested-With': 'XMLHttpRequest'}
+                    resp1 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                         cookies=ck).text
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
-                    with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                        w.write(pdf_content)
-                    pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                    pdf_list.append(pdf1)
+                    if "错误" not in resp1:
+                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            w.write(pdf_content)
+                        pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf_list.append(pdf1)
 
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
@@ -896,13 +909,16 @@ class guoshui(object):
                                'Accept-Language': 'zh-CN,zh;q=0.8',
                                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                'X-Requested-With': 'XMLHttpRequest'}
+                    resp2 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                         cookies=ck).text
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
-                    with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
-                        w.write(pdf_content)
-                    pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
-                    pdf_list.append(pdf2)
+                    if "错误" not in resp2:
+                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            w.write(pdf_content)
+                        pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf_list.append(pdf2)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
