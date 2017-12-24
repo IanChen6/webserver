@@ -517,7 +517,6 @@ class guoshui(object):
                         self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                         index += 1
 
-
                 # 城市建设税
                 browser.switch_to_default_content()
                 browser.switch_to_frame('qyIndex')
@@ -567,7 +566,7 @@ class guoshui(object):
                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                    'X-Requested-With': 'XMLHttpRequest'}
                         resp1 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
-                                             cookies=ck).text
+                                              cookies=ck).text
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
 
@@ -634,7 +633,7 @@ class guoshui(object):
                                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                    'X-Requested-With': 'XMLHttpRequest'}
                         resp2 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
-                                             cookies=ck).text
+                                              cookies=ck).text
                         pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                     cookies=ck).content
 
@@ -669,6 +668,13 @@ class guoshui(object):
                 logger.info("查询{}月".format(m))
                 # 已缴款查询
                 logger.info("截取地税缴款信息")
+                gbds = browser.window_handles
+                dq = browser.current_window_handle
+                for s in gbds:
+                    if s != dq:
+                        browser.switch_to_window(s)
+                        browser.close()
+                        browser.switch_to_window(dq)
                 browser.switch_to_default_content()
                 browser.switch_to_frame('qyIndex')
                 browser.find_element_by_css_selector('#menu3_17_110204').click()
@@ -713,8 +719,10 @@ class guoshui(object):
                         browser.find_element_by_xpath(
                             '//table[@id="yjkxx_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
                                 index2)).click()
+                        time.sleep(1)
                         wait.until(lambda browser: browser.find_element_by_css_selector('#cxjkmx'))
                         browser.find_element_by_css_selector('#cxjkmx').click()
+                        time.sleep(1)
                         windows = browser.window_handles
                         window2 = browser.current_window_handle
                         for c_window in windows:
@@ -758,6 +766,7 @@ class guoshui(object):
             browser.find_element_by_css_selector('#menu3_15_110202').click()
             browser.switch_to_frame('qymain')
             wait.until(lambda browser: browser.find_element_by_css_selector('#sbqq'))
+            time.sleep(0.5)
             browser.find_element_by_css_selector('#zsxmDm').find_element_by_xpath(
                 '//option[@value="10106"]').click()  # 选择个人所得税
             sb_startd = browser.find_element_by_css_selector('#sbqq')
@@ -801,8 +810,8 @@ class guoshui(object):
                                'Accept-Language': 'zh-CN,zh;q=0.8',
                                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                'X-Requested-With': 'XMLHttpRequest'}
-                    resp=requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
-                                  cookies=ck).text
+                    resp = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
+                                         cookies=ck).text
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
@@ -820,7 +829,6 @@ class guoshui(object):
                         self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
-
 
             # 城市建设税
             browser.switch_to_default_content()
@@ -871,7 +879,7 @@ class guoshui(object):
                                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                'X-Requested-With': 'XMLHttpRequest'}
                     resp1 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
-                                         cookies=ck).text
+                                          cookies=ck).text
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
@@ -938,7 +946,7 @@ class guoshui(object):
                                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
                                'X-Requested-With': 'XMLHttpRequest'}
                     resp2 = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
-                                         cookies=ck).text
+                                          cookies=ck).text
                     pdf_content = requests.post(url=post_url, headers=headers, data=post_data, timeout=10,
                                                 cookies=ck).content
 
@@ -957,8 +965,8 @@ class guoshui(object):
                     index += 1
             logger.info("截取地税申报信息已完成")
             # 已缴款查询
-            gbds=browser.window_handles
-            dq=browser.current_window_handle
+            gbds = browser.window_handles
+            dq = browser.current_window_handle
             for s in gbds:
                 if s != dq:
                     browser.switch_to_window(s)
@@ -983,7 +991,7 @@ class guoshui(object):
             # time.sleep(1)
             browser.find_element_by_css_selector('#query').click()
             time.sleep(2)
-            jietu=self.save_png(browser, '地税已缴款查询.png')
+            jietu = self.save_png(browser, '地税已缴款查询.png')
             # browser.save_screenshot('地税已缴款查询.png')
             # 缴款表格信息爬取
             content = browser.page_source
@@ -991,8 +999,8 @@ class guoshui(object):
             select = root.xpath('//table[@id="yjkxx_table"]/tbody/tr')
             index2 = 0
             pz_l = []
-            pz_t=0
-            jietulist=[]
+            pz_t = 0
+            jietulist = []
             jietulist.append(jietu)
 
             for i in select:
@@ -1000,30 +1008,36 @@ class guoshui(object):
                 pz = jkxx[0]
                 print(jkxx)
                 pz_l.append(pz)
-                if pz !=pz_t:
+                if pz != pz_t:
                     browser.find_element_by_xpath(
-                    '//table[@id="yjkxx_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(index2)).click()
+                        '//table[@id="yjkxx_table"]/tbody/tr[@data-index="{}"]//input[@name="btSelectItem"]'.format(
+                            index2)).click()
+                    time.sleep(2)
                     wait.until(lambda browser: browser.find_element_by_css_selector('#cxjkmx'))
                     browser.find_element_by_css_selector('#cxjkmx').click()
+                    time.sleep(2)
                     windows = browser.window_handles
                     window2 = browser.current_window_handle
                     for c_window in windows:
                         if c_window != window2:
                             browser.switch_to_window(c_window)
-                            cc=browser.page_source
+                            cc = browser.page_source
                             time.sleep(0.5)
+                            print(c_window)
+                            print(pz)
                             png_name = "缴款凭证号{}.png".format(pz)
-                            j=self.save_png(browser, png_name)
+                            j = self.save_png(browser, png_name)
                             jietulist.append(j)
                             browser.close()
                             browser.switch_to_window(window2)
                             time.sleep(1)
                             browser.switch_to_frame('qyIndex')
                             browser.switch_to_frame('qymain')
-                pz_t=pz
+                pz_t = pz
                 index2 += 1
                 params = (
-                    self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(jkxx[0]), str(jkxx[1]),
+                    self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(jkxx[0]),
+                    str(jkxx[1]),
                     str(jkxx[2]),
                     str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
                     self.img2json(jietulist))
@@ -1031,12 +1045,8 @@ class guoshui(object):
             logger.info("截取地税缴款信息已完成")
 
 
-
-
-
-
 # start = time.time()
-# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=11, batchyear=2017, companyid=18282900,
+# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=0, batchyear=2017, companyid=18282900,
 #              customerid=13)
 # cookies, session = gs.login()
 # jsoncookies = json.dumps(cookies)
@@ -1045,16 +1055,21 @@ class guoshui(object):
 #     f.close()
 # # chrome_options = Options()
 # # chrome_options.add_argument("--window-size=1280,2000")
-# browser = webdriver.Chrome(executable_path='D:/BaiduNetdiskDownload/chromedriver.exe')  # 添加driver的路径
-# # dcap = dict(DesiredCapabilities.PHANTOMJS)
-# # dcap["phantomjs.page.settings.userAgent"] = (
-# #     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
-# # dcap["phantomjs.page.settings.loadImages"] = False
+# # browser = webdriver.Chrome(executable_path='D:/BaiduNetdiskDownload/chromedriver.exe')  # 添加driver的路径
+# # browser = webdriver.Chrome(executable_path='F:\web_driver_for_chrome/chromedriver.exe')  # 添加driver的路径
+#
+# dcap = dict(DesiredCapabilities.PHANTOMJS)
+# dcap["phantomjs.page.settings.userAgent"] = (
+#     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
+# dcap["phantomjs.page.settings.loadImages"] = False
 # # browser = webdriver.PhantomJS(executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
 # #                               desired_capabilities=dcap)  # 添加driver的路径
-# # browser.viewportSize = {'width': 2200, 'height': 2200}
-# # browser.implicitly_wait(10)
-# # browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
+# browser = webdriver.PhantomJS(executable_path='F:/phantomjs_driver/phantomjs-2.1.1-windows/bin/phantomjs.exe',
+#                               desired_capabilities=dcap)  # 添加driver的路径
+# browser.viewportSize = {'width': 2200, 'height': 2200}
+# browser.implicitly_wait(10)
+# browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
+#
 # index_url = "http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/myoffice/myoffice.html"
 # browser.get(url=index_url)
 # browser.delete_all_cookies()
@@ -1091,7 +1106,7 @@ class guoshui(object):
 # # threads.append(t3)
 # # for t in threads:
 # #     t.start()
-# 
+#
 # end = time.time()
 # expend = end - start
 # print(expend)
