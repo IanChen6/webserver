@@ -20,6 +20,11 @@ from lxml import etree
 import pymssql
 import threading
 from selenium.webdriver.support import ui
+from pdfminer.converter import PDFPageAggregator
+from pdfminer.layout import LTTextBoxHorizontal, LAParams
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.pdfinterp import PDFTextExtractionNotAllowed
+from pdfminer.pdfparser import PDFParser, PDFDocument
 
 try:
     import urlparse as parse
@@ -124,6 +129,55 @@ class guoshui(object):
             post_data = json.dumps({"a": 1, "b": base64_data})
             res = requests.post(url="http://39.108.112.203:8002/mycode.ashx", data=post_data, timeout=30)
             return res.text
+
+    def parse_pdf(self,pdf_path):
+        fp = open(pdf_path, "rb")
+        # 用文件对象创建一个pdf文档分析器
+        parse_pdf = PDFParser(fp)
+        # 创建一个PDF文档
+        doc = PDFDocument()
+        parse_pdf.set_document(doc)
+        doc.set_parser(parse_pdf)
+        doc.initialize()
+        # 检测文档是否提供txt转换，不提供就忽略
+        if not doc.is_extractable:
+            raise PDFTextExtractionNotAllowed
+        else:
+            # 创建PDf资源管理器 来管理共享资源
+            rsrcmgr = PDFResourceManager()
+            # 创建一个PDF参数分析器
+            laparams = LAParams()
+            # 创建聚合器
+            device = PDFPageAggregator(rsrcmgr, laparams=laparams)
+            # 创建一个PDF页面解释器对象
+            interpreter = PDFPageInterpreter(rsrcmgr, device)
+            # 循环遍历列表，每次处理一页的内容
+            # doc.get_pages() 获取page列表
+            for page in doc.get_pages():
+                # 使用页面解释器来读取
+                interpreter.process_page(page)
+                # 使用聚合器获取内容
+                layout = device.get_result()
+                results_last = ""
+                # 这里layout是一个LTPage对象 里面存放着 这个page解析出的各种对象 一般包括LTTextBox, LTFigure, LTImage, LTTextBoxHorizontal 等等 想要获取文本就获得对象的text属性，
+                for out in layout:
+                    # 判断是否含有get_text()方法，图片之类的就没有
+                    # if hasattr(out,"get_text"):
+                    if isinstance(out, LTTextBoxHorizontal):
+                        results = out.get_text()
+                        if results_last == "税（费）种\n":
+                            sz = results.strip("").split("\n")
+                            print(sz)
+                        if "7=5×6" in results:
+                            jn = results.strip("").split("\n")
+                            jn.pop(0)
+                            print(jn)
+                        results_last = results
+        pdf_dict = {}
+        for i in range(len(sz) - 3):
+            pdf_dict[sz[i]] = jn[i]
+        print(pdf_dict)
+        return pdf_dict
 
     def login(self):
         logger.info("开始登录")
@@ -453,7 +507,6 @@ class guoshui(object):
                 zzrq = '{}-{}-{}'.format(year, month, days)
                 logger.info("查询{}月".format(m))
                 # 查询个人所得税
-
                 browser.find_element_by_css_selector('#zsxmDm').find_element_by_xpath(
                     '//option[@value="10106"]').click()  # 选择个人所得税
                 sb_startd = browser.find_element_by_css_selector('#sbqq')
@@ -575,13 +628,21 @@ class guoshui(object):
                                 w.write(pdf_content)
                             pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
                             pdf_list.append(pdf1)
-
+                            pdf_dict=self.parse_pdf("申报表详情{}.pdf".format(pzxh))
+                            js=self.img2json(pdf_list)
+                            js = json.loads(js)
+                            dm = js.copy()
+                            dm.update(pdf_dict)
+                            print(dm)
+                            pdf_json=json.dumps(dm)
+                        else:
+                            pdf_json=self.img2json(pdf_list)
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                             str(jsxx[1]),
                             str(jsxx[2]),
                             str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]),
-                            self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                            pdf_json)  # self.img2json("申报表详情{}.pdf".format(pzxh))
                         self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                         index += 1
                 # 企业所得税
@@ -888,13 +949,22 @@ class guoshui(object):
                             w.write(pdf_content)
                         pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
                         pdf_list.append(pdf1)
+                        pdf_dict = self.parse_pdf("申报表详情{}.pdf".format(pzxh))
+                        js = self.img2json(pdf_list)
+                        js = json.loads(js)
+                        dm = js.copy()
+                        dm.update(pdf_dict)
+                        print(dm)
+                        pdf_json = json.dumps(dm)
+                    else:
+                        pdf_json = self.img2json(pdf_list)
 
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
                         str(jsxx[1]),
                         str(jsxx[2]),
                         str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]),
-                        self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                        pdf_json)  # self.img2json("申报表详情{}.pdf".format(pzxh))
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
             # 企业所得税
@@ -1046,7 +1116,7 @@ class guoshui(object):
 
 
 # start = time.time()
-# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=0, batchyear=2017, companyid=18282900,
+# gs = guoshui(user="440300754285743", pwd="77766683", batchid=2017, batchmonth=4, batchyear=2017, companyid=18282900,
 #              customerid=13)
 # cookies, session = gs.login()
 # jsoncookies = json.dumps(cookies)
@@ -1062,10 +1132,10 @@ class guoshui(object):
 # dcap["phantomjs.page.settings.userAgent"] = (
 #     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
 # dcap["phantomjs.page.settings.loadImages"] = False
-# # browser = webdriver.PhantomJS(executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
-# #                               desired_capabilities=dcap)  # 添加driver的路径
-# browser = webdriver.PhantomJS(executable_path='F:/phantomjs_driver/phantomjs-2.1.1-windows/bin/phantomjs.exe',
+# browser = webdriver.PhantomJS(executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
 #                               desired_capabilities=dcap)  # 添加driver的路径
+# # browser = webdriver.PhantomJS(executable_path='F:/phantomjs_driver/phantomjs-2.1.1-windows/bin/phantomjs.exe',
+# #                               desired_capabilities=dcap)  # 添加driver的路径
 # browser.viewportSize = {'width': 2200, 'height': 2200}
 # browser.implicitly_wait(10)
 # browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
@@ -1094,6 +1164,12 @@ class guoshui(object):
 # # browser.get(url=jk_url)
 #
 # # gs.parse_jiaokuan(browser)
+#
+# # zzsfp_url="http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/fp/zzszyfpdksq/fp_zzszyfpdksq.html"
+# # browser.get(url=zzsfp_url)
+# # browser.switch_to_frame("txsqxx")
+# # cont=browser.page_source
+#
 #
 # # 地税查询
 # ds_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/djsxx.html'
