@@ -25,7 +25,6 @@ from pdfminer.layout import LTTextBoxHorizontal, LAParams
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfinterp import PDFTextExtractionNotAllowed
 from pdfminer.pdfparser import PDFParser, PDFDocument
-
 try:
     import urlparse as parse
 except:
@@ -38,7 +37,7 @@ from log_ging.log_01 import *
 logger = create_logger()
 
 
-# logger.warning("aaa")
+
 class guoshui(object):
     def __init__(self, user, pwd, batchid, batchyear, batchmonth, companyid, customerid):
         self.user = user
@@ -60,6 +59,8 @@ class guoshui(object):
         if batchmonth != 0:
             monthRange = calendar.monthrange(batchyear, batchmonth)
             self.days = monthRange[1]
+        if not os.path.exists('{}'.format(user)):
+            os.mkdir('{}'.format(user))
 
     def upload_img(self, path):
         with open(path, 'rb') as a:
@@ -217,7 +218,7 @@ class guoshui(object):
                 return cookies, session
 
             else:
-                logger.info("登录失败")
+                logger.error("登录失败")
 
     def shuizhongchaxun(self, browser):
         browser.find_element_by_css_selector("#sz .mini-buttonedit-input").clear()
@@ -265,7 +266,7 @@ class guoshui(object):
                 browser.find_element_by_css_selector("#sbrqz .mini-buttonedit-input").send_keys(zzrq)
                 browser.find_element_by_css_selector("#stepnext .mini-button-text").click()
                 time.sleep(2)
-                imgname = self.save_png(browser, '国税{}{}月申报结果截图.png'.format(shuiming, month))
+                imgname = self.save_png(browser, '{}/国税{}{}月申报结果截图.png'.format(self.user,shuiming, month))
                 # 表格信息爬取
                 content = browser.page_source
                 root = etree.HTML(content)
@@ -305,7 +306,7 @@ class guoshui(object):
             browser.find_element_by_css_selector("#sbrqz .mini-buttonedit-input").send_keys(zzrq)
             browser.find_element_by_css_selector("#stepnext .mini-button-text").click()
             time.sleep(2)
-            imgname = self.save_png(browser, '国税{}{}申报结果截图.png'.format(shuiming, month))
+            imgname = self.save_png(browser, '{}/国税{}{}申报结果截图.png'.format(self.user,shuiming, month))
             # 表格信息爬取
             content = browser.page_source
             root = etree.HTML(content)
@@ -325,6 +326,7 @@ class guoshui(object):
                 img_list = img_list + img_list3
                 logger.info("打印信息")
                 print(shuizhong)
+                logger.warn(shuizhong)
                 logger.info("开始插入数据库")
                 params = (
                     self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid,
@@ -357,11 +359,10 @@ class guoshui(object):
                 b += 1
                 try:
                     browser.find_element_by_id('mini-1${}'.format(b)).click()
-                    # browser.save_screenshot('国税申报表截图{}{}.png'.format(a, b))
-                    shenbaobiao = self.save_png(browser, '国税申报表截图{}{}{}月.png'.format(a, b, month))
+                    shenbaobiao = self.save_png(browser, '{}/国税申报表截图{}{}{}月.png'.format(self.user,a, b, month))
                     img_list2.append(shenbaobiao)
                 except Exception as e:
-                    logger.info(e)
+                    logger.error("出现错误:",e)
                     continue
             logger.info("申报表截图完成")
             browser.switch_to.default_content()
@@ -408,10 +409,9 @@ class guoshui(object):
                     browser.find_element_by_css_selector(".mini-tools-close ").click()
                 except:
                     logger.info("处理没有缴款信息的错误")
-                img = self.save_png(browser, '缴税信息.png')
+                img = self.save_png(browser, '{}/缴税信息.png'.format(self.user))
                 iml = []
                 iml.append(img)
-                # browser.save_screenshot('缴税信息.png')
                 # 表格信息爬取
                 content = browser.page_source
                 root = etree.HTML(content)
@@ -438,10 +438,10 @@ class guoshui(object):
             wait = ui.WebDriverWait(browser, 10)
             wait.until(lambda browser: browser.find_element_by_css_selector("#stepnext .mini-button-text"))
             browser.find_element_by_css_selector("#stepnext .mini-button-text").click()
-            img = self.save_png(browser, '缴税信息.png')
+            img = self.save_png(browser, '{}/缴税信息.png'.format(self.user))
             iml = []
             iml.append(img)
-            # browser.save_screenshot('缴税信息.png')
+
             # 表格信息爬取
             content = browser.page_source
             root = etree.HTML(content)
@@ -518,8 +518,8 @@ class guoshui(object):
                 # time.sleep(1)
                 browser.find_element_by_css_selector('#query').click()
                 time.sleep(2)
-                grsd = self.save_png(browser, '地税个人所得税已申报查询.png')
-                # browser.save_screenshot('地税已申报查询.png')
+                grsd = self.save_png(browser, '{}/地税个人所得税已申报查询.png'.format(self.user))
+
                 # 表格信息爬取
                 content = browser.page_source
                 root = etree.HTML(content)
@@ -556,9 +556,9 @@ class guoshui(object):
                                                     cookies=ck).content
 
                         if "错误" not in resp:
-                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            with open("{}/申报表详情{}.pdf".format(self.user,pzxh), 'wb') as w:
                                 w.write(pdf_content)
-                            pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                            pdf = self.upload_img("{}/申报表详情{}.pdf".format(self.user,pzxh))
                             pdf_list.append(pdf)
                         params = (
                             self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
@@ -586,8 +586,8 @@ class guoshui(object):
                 # time.sleep(1)
                 browser.find_element_by_css_selector('#query').click()
                 time.sleep(2)
-                csjs = self.save_png(browser, '地税城市建设税已申报查询.png')
-                # browser.save_screenshot('地税已申报查询.png')
+                csjs = self.save_png(browser, '{}/地税城市建设税已申报查询.png'.format(self.user))
+
                 # 表格信息爬取
                 content = browser.page_source
                 root = etree.HTML(content)
@@ -624,12 +624,12 @@ class guoshui(object):
                                                     cookies=ck).content
 
                         if "错误" not in resp1:
-                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            with open("{}/申报表详情{}.pdf".format(self.user,pzxh), 'wb') as w:
                                 w.write(pdf_content)
                             time.sleep(0.5)
-                            pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                            pdf1 = self.upload_img("{}/申报表详情{}.pdf".format(self.user,pzxh))
                             pdf_list.append(pdf1)
-                            pdf_dict=self.parse_pdf("申报表详情{}.pdf".format(pzxh))
+                            pdf_dict=self.parse_pdf("{}/申报表详情{}.pdf".format(self.user,pzxh))
                             js=self.img2json(pdf_list)
                             js = json.loads(js)
                             js["pdf数据"] = pdf_dict
@@ -661,8 +661,8 @@ class guoshui(object):
                 # time.sleep(1)
                 browser.find_element_by_css_selector('#query').click()
                 time.sleep(2)
-                qysd = self.save_png(browser, '地税企业所得税已申报查询.png')
-                # browser.save_screenshot('地税已申报查询.png')
+                qysd = self.save_png(browser, '{}/地税企业所得税已申报查询.png'.format(self.user))
+
                 # 表格信息爬取
                 content = browser.page_source
                 root = etree.HTML(content)
@@ -699,9 +699,9 @@ class guoshui(object):
                                                     cookies=ck).content
 
                         if "错误" not in resp2:
-                            with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                            with open("{}/申报表详情{}.pdf".format(self.user,pzxh), 'wb') as w:
                                 w.write(pdf_content)
-                            pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                            pdf2 = self.upload_img("{}/申报表详情{}.pdf".format(self.user,pzxh))
                             pdf_list.append(pdf2)
 
                         params = (
@@ -760,8 +760,8 @@ class guoshui(object):
                 # time.sleep(1)
                 browser.find_element_by_css_selector('#query').click()
                 time.sleep(2)
-                jietu = self.save_png(browser, '地税已缴款查询.png')
-                # browser.save_screenshot('地税已缴款查询.png')
+                jietu = self.save_png(browser, '{}/地税已缴款查询.png'.format(self.user))
+
                 # 缴款表格信息爬取
                 content = browser.page_source
                 root = etree.HTML(content)
@@ -792,7 +792,7 @@ class guoshui(object):
                                 cc = browser.page_source
                                 time.sleep(0.5)
                                 if "错误" not in cc:
-                                    png_name = "缴款凭证号{}.png".format(pz)
+                                    png_name = "{}/缴款凭证号{}.png".format(self.user,pz)
                                     j = self.save_png(browser, png_name)
                                     jietulist.append(j)
                                     sbsj = {}
@@ -855,8 +855,8 @@ class guoshui(object):
             # time.sleep(1)
             browser.find_element_by_css_selector('#query').click()
             time.sleep(2)
-            grsd = self.save_png(browser, '地税个人所得税已申报查询.png')
-            # browser.save_screenshot('地税已申报查询.png')
+            grsd = self.save_png(browser, '{}/地税个人所得税已申报查询.png'.format(self.user))
+
             # 表格信息爬取
             content = browser.page_source
             root = etree.HTML(content)
@@ -893,9 +893,9 @@ class guoshui(object):
                                                 cookies=ck).content
 
                     if "错误" not in resp:
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                        with open("{}/申报表详情{}.pdf".format(self.user,pzxh), 'wb') as w:
                             w.write(pdf_content)
-                        pdf = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf = self.upload_img("{}/申报表详情{}.pdf".format(self.user,pzxh))
                         pdf_list.append(pdf)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
@@ -923,8 +923,8 @@ class guoshui(object):
             # time.sleep(1)
             browser.find_element_by_css_selector('#query').click()
             time.sleep(2)
-            csjs = self.save_png(browser, '地税城市建设税已申报查询.png')
-            # browser.save_screenshot('地税已申报查询.png')
+            csjs = self.save_png(browser, '{}/地税城市建设税已申报查询.png'.format(self.user))
+
             # 表格信息爬取
             content = browser.page_source
             root = etree.HTML(content)
@@ -961,12 +961,12 @@ class guoshui(object):
                                                 cookies=ck).content
 
                     if "错误" not in resp1:
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                        with open("{}/申报表详情{}.pdf".format(self.user,pzxh), 'wb') as w:
                             w.write(pdf_content)
                         time.sleep(0.5)
-                        pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf1 = self.upload_img("{}/申报表详情{}.pdf".format(self.user,pzxh))
                         pdf_list.append(pdf1)
-                        pdf_dict = self.parse_pdf("申报表详情{}.pdf".format(pzxh))
+                        pdf_dict = self.parse_pdf("{}/申报表详情{}.pdf".format(self.user,pzxh))
                         js = self.img2json(pdf_list)
                         js = json.loads(js)
                         js["pdf数据"]=pdf_dict
@@ -999,8 +999,8 @@ class guoshui(object):
             # time.sleep(1)
             browser.find_element_by_css_selector('#query').click()
             time.sleep(2)
-            qysd = self.save_png(browser, '地税企业所得税已申报查询.png')
-            # browser.save_screenshot('地税已申报查询.png')
+            qysd = self.save_png(browser, '{}/地税企业所得税已申报查询.png'.format(self.user))
+
             # 表格信息爬取
             content = browser.page_source
             root = etree.HTML(content)
@@ -1037,9 +1037,9 @@ class guoshui(object):
                                                 cookies=ck).content
 
                     if "错误" not in resp2:
-                        with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
+                        with open("{}/申报表详情{}.pdf".format(self.user,pzxh), 'wb') as w:
                             w.write(pdf_content)
-                        pdf2 = self.upload_img("申报表详情{}.pdf".format(pzxh))
+                        pdf2 = self.upload_img("{}/申报表详情{}.pdf".format(self.user,pzxh))
                         pdf_list.append(pdf2)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid, str(pzxh),
@@ -1077,8 +1077,8 @@ class guoshui(object):
             # time.sleep(1)
             browser.find_element_by_css_selector('#query').click()
             time.sleep(2)
-            jietu = self.save_png(browser, '地税已缴款查询.png')
-            # browser.save_screenshot('地税已缴款查询.png')
+            jietu = self.save_png(browser, '{}/地税已缴款查询.png'.format(self.user))
+
             # 缴款表格信息爬取
             content = browser.page_source
             root = etree.HTML(content)
@@ -1111,7 +1111,7 @@ class guoshui(object):
                             time.sleep(0.5)
                             print(c_window)
                             print(pz)
-                            png_name = "缴款凭证号{}.png".format(pz)
+                            png_name = "{}/缴款凭证号{}.png".format(self.user,pz)
                             j = self.save_png(browser, png_name)
                             jietulist.append(j)
                             sbsj={}

@@ -23,8 +23,9 @@ def create_logger(level=logging.DEBUG):
     fh.setLevel(level)
 
 # CREATE FORMATTER
-    fmt = "%(asctime)s %(levelname)s %(filename)s %(lineno)d %(process)d %(message)s"
+    fmt = "%(asctime)s %(levelname)s %(filename)s %(lineno)d %(thread)d %(process)d %(message)s"
     datefmt = "%a %d %b %Y %H:%M:%S"
+
     formatter = logging.Formatter(fmt, datefmt)
 
 # add handler and formatter to logger

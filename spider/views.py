@@ -32,12 +32,9 @@ def search(request):
 # 接收POST请求数据
 @csrf_exempt
 def search_post(request):
-    # ctx = {}
-    # ctx['rlt'] = "信息未输入"
     logger = create_logger()
     logger.info("开始接受请求")
     if request.POST:
-        # ctx['rlt'] = request.POST['BatchID']
         post_data = dict(request.POST)
         logger.info("接受请求成功")
         # ctx['rlt'] = "请输入正确信息"
@@ -60,7 +57,6 @@ def search_post(request):
             try:
                 gs = guoshui(user=account, pwd=pwd, batchid=batchid, batchyear=batchyear, batchmonth=batchmonth,
                          companyid=companyid, customerid=customerid)
-            # gs = guoshui(user=account, pwd=pwd,batchid=123,batchmonth=456,batchyear=789,companyid=12,customerid=13)
                 cookies, session = gs.login()
                 jsoncookies = json.dumps(cookies)
                 with open('cookies.json', 'w') as f:  # 将login后的cookies提取出来
@@ -70,12 +66,12 @@ def search_post(request):
                 dcap["phantomjs.page.settings.userAgent"] = (
                 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
                 dcap["phantomjs.page.settings.loadImages"] = True
-                # browser = webdriver.PhantomJS(
-                # executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
-                # desired_capabilities=dcap)
                 browser = webdriver.PhantomJS(
-                executable_path='/home/tool/phantomjs-2.1.1-linux-x86_64/bin/phantomjs',
+                executable_path='D:/BaiduNetdiskDownload/phantomjs-2.1.1-windows/bin/phantomjs.exe',
                 desired_capabilities=dcap)
+                # browser = webdriver.PhantomJS(
+                # executable_path='/home/tool/phantomjs-2.1.1-linux-x86_64/bin/phantomjs',
+                # desired_capabilities=dcap)
                 browser.implicitly_wait(10)
                 browser.viewportSize = {'width': 2200, 'height': 2200}
                 browser.set_window_size(1400, 1600)  # Chrome无法使用这功能
@@ -96,7 +92,6 @@ def search_post(request):
                 browser.get(url=shenbao_url)
                 time.sleep(3)
                 gs.shuizhongchaxun(browser)
-                # gs.parse_biaoge(browser)
 
                 # 国税缴款查询
                 jk_url = 'http://dzswj.szgs.gov.cn/BsfwtWeb/apps/views/sb/djsxx/jk_jsxxcx.html'
