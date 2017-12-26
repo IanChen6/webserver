@@ -795,12 +795,28 @@ class guoshui(object):
                                     png_name = "缴款凭证号{}.png".format(pz)
                                     j = self.save_png(browser, png_name)
                                     jietulist.append(j)
+                                    sbsj = {}
+                                    bb = browser.page_source
+                                    root = etree.HTML(bb)
+                                    zgsb = root.xpath('//table[@id="lineTable"]/tbody/tr')
+                                    for i in zgsb[1:-1]:
+                                        cjb = i.xpath('./td/text()')
+                                        zt = cjb[2]
+                                        out = "".join(cjb[6].strip())
+                                        sbsj[zt] = out
+                                    cb = self.img2json(jietulist)
+                                    cb = json.loads(cb)
+                                    cb["缴款数据"] = sbsj
+                                    jkjs = json.dumps(cb, ensure_ascii=False)
+                                    print(jkjs)
                                 # browser.save_screenshot(png_name)
                                 browser.close()
                                 browser.switch_to_window(window2)
                                 time.sleep(1)
                                 browser.switch_to_frame('qyIndex')
                                 browser.switch_to_frame('qymain')
+                    else:
+                        jkjs=self.img2json(jietulist)
                     pz_t = pz
                     index2 += 1
                     params = (
@@ -808,7 +824,7 @@ class guoshui(object):
                         str(jkxx[1]),
                         str(jkxx[2]),
                         str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
-                        self.img2json(jietulist))
+                        jkjs)
                     self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
                 logger.info("截取地税缴款信息已完成")
         else:
@@ -1098,11 +1114,27 @@ class guoshui(object):
                             png_name = "缴款凭证号{}.png".format(pz)
                             j = self.save_png(browser, png_name)
                             jietulist.append(j)
+                            sbsj={}
+                            bb=browser.page_source
+                            root = etree.HTML(bb)
+                            zgsb = root.xpath('//table[@id="lineTable"]/tbody/tr')
+                            for i in zgsb[1:-1]:
+                                cjb=i.xpath('./td/text()')
+                                zt=cjb[2]
+                                out = "".join(cjb[6].strip())
+                                sbsj[zt]=out
+                            cb=self.img2json(jietulist)
+                            cb=json.loads(cb)
+                            cb["缴款数据"]=sbsj
+                            jkjs=json.dumps(cb,ensure_ascii=False)
+                            print(jkjs)
                             browser.close()
                             browser.switch_to_window(window2)
                             time.sleep(1)
                             browser.switch_to_frame('qyIndex')
                             browser.switch_to_frame('qymain')
+                else:
+                    jkjs=self.img2json(jietulist)
                 pz_t = pz
                 index2 += 1
                 params = (
@@ -1110,7 +1142,7 @@ class guoshui(object):
                     str(jkxx[1]),
                     str(jkxx[2]),
                     str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
-                    self.img2json(jietulist))
+                    jkjs)
                 self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
             logger.info("截取地税缴款信息已完成")
 
