@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abaa276c-cb08-4876-8b2b-d1199ae8c31e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/captcha.jpg" afterPath="$PROJECT_DIR$/captcha.jpg" />
-      <change beforePath="$PROJECT_DIR$/cookies.json" afterPath="$PROJECT_DIR$/cookies.json" />
-      <change beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
-      <change beforePath="$PROJECT_DIR$/guoshui.py" afterPath="$PROJECT_DIR$/guoshui.py" />
-      <change beforePath="$PROJECT_DIR$/log.log" afterPath="$PROJECT_DIR$/log.log" />
       <change beforePath="$PROJECT_DIR$/spider/views.py" afterPath="$PROJECT_DIR$/spider/views.py" />
-      <change beforePath="$PROJECT_DIR$/webserver/settings.py" afterPath="$PROJECT_DIR$/webserver/settings.py" />
-      <change beforePath="$PROJECT_DIR$/地税个人所得税已申报查询.png" afterPath="$PROJECT_DIR$/地税个人所得税已申报查询.png" />
-      <change beforePath="$PROJECT_DIR$/地税企业所得税已申报查询.png" afterPath="$PROJECT_DIR$/地税企业所得税已申报查询.png" />
-      <change beforePath="$PROJECT_DIR$/地税城市建设税已申报查询.png" afterPath="$PROJECT_DIR$/地税城市建设税已申报查询.png" />
-      <change beforePath="$PROJECT_DIR$/地税已缴款查询.png" afterPath="$PROJECT_DIR$/地税已缴款查询.png" />
-      <change beforePath="$PROJECT_DIR$/申报表详情10024417000011172934.pdf" afterPath="$PROJECT_DIR$/申报表详情10024417000011172934.pdf" />
-      <change beforePath="$PROJECT_DIR$/申报表详情10024417000011988636.pdf" afterPath="$PROJECT_DIR$/申报表详情10024417000011988636.pdf" />
-      <change beforePath="$PROJECT_DIR$/缴款凭证号320170419000018581.png" afterPath="$PROJECT_DIR$/缴款凭证号320170419000018581.png" />
-      <change beforePath="$PROJECT_DIR$/缴款凭证号320170419000019133.png" afterPath="$PROJECT_DIR$/缴款凭证号320170419000019133.png" />
-      <change beforePath="$PROJECT_DIR$/缴款凭证号320170419000019141.png" afterPath="$PROJECT_DIR$/缴款凭证号320170419000019141.png" />
-      <change beforePath="$PROJECT_DIR$/缴款凭证号320170419000019152.png" afterPath="$PROJECT_DIR$/缴款凭证号320170419000019152.png" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spider/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-533">
-              <caret line="77" column="44" lean-forward="false" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+            <state relative-caret-position="431">
+              <caret line="77" column="42" lean-forward="true" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -72,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="guoshui.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="guoshui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/guoshui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="602">
-              <caret line="1185" column="19" lean-forward="true" selection-start-line="1185" selection-start-column="19" selection-end-line="1185" selection-end-column="19" />
+            <state relative-caret-position="1514">
+              <caret line="1185" column="19" lean-forward="false" selection-start-line="1185" selection-start-column="19" selection-end-line="1185" selection-end-column="19" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -145,8 +129,8 @@
         <option value="$PROJECT_DIR$/get_db.py" />
         <option value="$PROJECT_DIR$/log.log" />
         <option value="$PROJECT_DIR$/webserver/settings.py" />
-        <option value="$PROJECT_DIR$/spider/views.py" />
         <option value="$PROJECT_DIR$/guoshui.py" />
+        <option value="$PROJECT_DIR$/spider/views.py" />
       </list>
     </option>
   </component>
@@ -647,22 +631,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spider/views.py">
+    <entry file="file://$PROJECT_DIR$/guoshui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-533">
-          <caret line="77" column="44" lean-forward="false" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+        <state relative-caret-position="1514">
+          <caret line="1185" column="19" lean-forward="false" selection-start-line="1185" selection-start-column="19" selection-end-line="1185" selection-end-column="19" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#23#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/guoshui.py">
+    <entry file="file://$PROJECT_DIR$/spider/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="1185" column="19" lean-forward="true" selection-start-line="1185" selection-start-column="19" selection-end-line="1185" selection-end-column="19" />
+        <state relative-caret-position="431">
+          <caret line="77" column="42" lean-forward="true" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
           <folding>
-            <element signature="e#23#38#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
