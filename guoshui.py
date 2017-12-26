@@ -626,12 +626,13 @@ class guoshui(object):
                         if "错误" not in resp1:
                             with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
                                 w.write(pdf_content)
+                            time.sleep(0.5)
                             pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
                             pdf_list.append(pdf1)
                             pdf_dict=self.parse_pdf("申报表详情{}.pdf".format(pzxh))
                             js=self.img2json(pdf_list)
                             js = json.loads(js)
-                            js["pdf数据"] = list(pdf_dict.items())
+                            js["pdf数据"] = pdf_dict
                             pdf_json = json.dumps(js, ensure_ascii=False)
                             print(pdf_json)
                         else:
@@ -946,12 +947,13 @@ class guoshui(object):
                     if "错误" not in resp1:
                         with open("申报表详情{}.pdf".format(pzxh), 'wb') as w:
                             w.write(pdf_content)
+                        time.sleep(0.5)
                         pdf1 = self.upload_img("申报表详情{}.pdf".format(pzxh))
                         pdf_list.append(pdf1)
                         pdf_dict = self.parse_pdf("申报表详情{}.pdf".format(pzxh))
                         js = self.img2json(pdf_list)
                         js = json.loads(js)
-                        js["pdf数据"]=list(pdf_dict.items())
+                        js["pdf数据"]=pdf_dict
                         pdf_json = json.dumps(js,ensure_ascii=False)
                         print(pdf_json)
                     else:
