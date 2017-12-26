@@ -19,6 +19,6 @@ from spider import views
 
 urlpatterns = [
     url(r'admin/', admin.site.urls),
-    url(r'^search-post/$', views.search_post, name='search_post')
+    url(r'^search-post$', views.search_post, name='search_post')
 
 ]
