@@ -334,6 +334,7 @@ class guoshui(object):
                     str(shuizhong[2]),
                     str(shuizhong[3]), str(shuizhong[4]), str(shuizhong[5]), str(shuizhong[6]),
                     self.img2json(img_list))
+                logger.info(params)
                 self.insert_db("[dbo].[Python_Serivce_GSTaxApplyShenZhen_Add]", params)
                 logger.info("数据库插入完成")
         logger.info("截取国税申报信息已完成")
@@ -419,6 +420,7 @@ class guoshui(object):
                 for i in select[1:]:
                     jsxx = i.xpath('.//text()')
                     print(jsxx)
+                    logger.warn(jsxx)
                     params = (
                         self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid,
                         str(jsxx[1]),
@@ -426,6 +428,7 @@ class guoshui(object):
                         str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]), str(jsxx[8]),
                         str(jsxx[9]),
                         self.img2json(iml))
+                    logger.info(params)
                     self.insert_db("[dbo].[Python_Serivce_GSTaxChargeShenZhen_Add]", params)
         else:
             browser.find_element_by_css_selector("#sssqq .mini-buttonedit-input").clear()
@@ -449,12 +452,14 @@ class guoshui(object):
             for i in select[1:]:
                 jsxx = i.xpath('.//text()')
                 print(jsxx)
+                logger.warn(jsxx)
                 params = (
                     self.batchid, self.batchyear, self.batchmonth, self.companyid, self.customerid,
                     str(jsxx[1]),
                     str(jsxx[2]),
                     str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]), str(jsxx[8]), str(jsxx[9]),
                     self.img2json(iml))
+                logger.info(params)
                 self.insert_db("[dbo].[Python_Serivce_GSTaxChargeShenZhen_Add]", params)
             logger.info("截取国税缴款信息已完成")
 
@@ -567,6 +572,7 @@ class guoshui(object):
                             str(jsxx[2]), None,
                             str(jsxx[3]), None, None,
                             self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                        logger.info(params)
                         self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                         index += 1
 
@@ -643,6 +649,7 @@ class guoshui(object):
                             str(jsxx[2]),
                             str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]),
                             pdf_json)  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                        logger.info(params)
                         self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                         index += 1
                 # 企业所得税
@@ -710,6 +717,7 @@ class guoshui(object):
                             str(jsxx[2]),
                             str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]),
                             self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                        logger.info(params)
                         self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                         index += 1
                 logger.info("截取地税申报信息已完成")
@@ -825,6 +833,7 @@ class guoshui(object):
                         str(jkxx[2]),
                         str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
                         jkjs)
+                    logger.info(params)
                     self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
                 logger.info("截取地税缴款信息已完成")
         else:
@@ -904,6 +913,7 @@ class guoshui(object):
                         str(jsxx[2]), "",
                         str(jsxx[3]), "", "",
                         self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                    logger.info(params)
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
 
@@ -981,6 +991,7 @@ class guoshui(object):
                         str(jsxx[2]),
                         str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]),
                         pdf_json)  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                    logger.info(params)
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
             # 企业所得税
@@ -1047,6 +1058,7 @@ class guoshui(object):
                         str(jsxx[2]),
                         str(jsxx[3]), str(jsxx[4]), str(jsxx[5]), str(jsxx[6]), str(jsxx[7]),
                         self.img2json(pdf_list))  # self.img2json("申报表详情{}.pdf".format(pzxh))
+                    logger.info(params)
                     self.insert_db("[dbo].[Python_Serivce_DSTaxApplyShenZhen_Add]", params)
                     index += 1
             logger.info("截取地税申报信息已完成")
@@ -1143,6 +1155,7 @@ class guoshui(object):
                     str(jkxx[2]),
                     str(jkxx[3]), str(jkxx[4]), str(jkxx[5]), str(jkxx[6]), str(jkxx[7]),
                     jkjs)
+                logger.info(params)
                 self.insert_db("[dbo].[Python_Serivce_DSTaxChargeShenZhen_Add]", params)
             logger.info("截取地税缴款信息已完成")
 

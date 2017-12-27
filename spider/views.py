@@ -37,7 +37,7 @@ def search_post(request):
     if request.POST:
         post_data = dict(request.POST)
         logger.info("接受请求成功")
-        # ctx['rlt'] = "请输入正确信息"
+        logger.info(post_data)
         if post_data['BatchID'] and post_data['BatchYear'] and post_data['BatchMonth'] and post_data['CompanyID'] and  post_data['CustomerID'] and post_data['TaxId'] and post_data['TaxPwd'] and post_data['jobname'] and post_data['jobparams']:
             account = post_data['TaxId'][0]
             pwd = post_data['TaxPwd'][0]
@@ -52,6 +52,7 @@ def search_post(request):
             host, port, db = get_db(companyid)
             #添加任务
             logger.info("添加任务到数据库")
+            logger.info(db)
             add_task(host, port, db, batchid, batchyear, batchmonth, companyid, customerid, jobname, jobparams)
             logger.info("任务添加成功,开始爬取")
             try:
@@ -111,7 +112,7 @@ def search_post(request):
 
             except Exception as e:
                 browser.quit()
-                job_finish(host, port, db, batchid, companyid, customerid, '-1', e)
+                job_finish(host, port, db, batchid, companyid, customerid, '-1', "爬取失败")
                 return HttpResponse("爬取失败")
 
     return HttpResponse("信息输入错误")
